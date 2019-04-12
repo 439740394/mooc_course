@@ -1,0 +1,82 @@
+@mixin scrollX {
+  overflow: hidden;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin wrap-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin wrap-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin wrap-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@mixin column-Center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin column-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin column-around {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@mixin auto-fix($t, $r, $b, $l) {
+  position: absolute;
+  top: $t;
+  right: $r;
+  bottom: $b;
+  left: $l;
+}
+
+@mixin ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@mixin ellipsis2($line) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+}
+
+@mixin clearfix {
+  *zoom: 1;
+  &::before, &::after {
+    content: "";
+    height: 0;
+    display: block;
+    clear: both;
+  }
+}

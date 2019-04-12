@@ -1,0 +1,16 @@
+.scale-enter, .scale-leave-to {
+  opacity: 0;
+  transform: scale(0);
+}
+.scale-enter-to, .scale-leave {
+   transform: scale(1);
+ }
+.slide-left-enter-to, .slide-left-leave {
+  transform: translate3d(0, 0, 0);
+}
+.slide-left-enter, .slide-left-leave-to {
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-enter-active, .slide-left-leave-active, .scale-enter-active, .scale-leave-active {
+  transition: all .3s linear;
+}
