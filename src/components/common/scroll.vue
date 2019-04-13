@@ -20,7 +20,7 @@ export default {
     },
     tap: {
       type: Boolean,
-      default: true
+      default: false
     },
     listenScroll: {
       type: Boolean,
@@ -80,14 +80,12 @@ export default {
         disableMouse: false,
         disableTouch: false
       })
-
       if (this.listenScroll) {
         let _this = this
         this.scroll.on('scroll', (pos) => {
           _this.$emit('scroll', pos)
         })
       }
-
       if (this.pullup) {
         this.scroll.on('scrollEnd', () => {
           if (this.scroll.y <= (this.scroll.maxScrollY + 50)) {
