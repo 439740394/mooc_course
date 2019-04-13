@@ -35,13 +35,13 @@ export const courseMixins = {
     },
     /* 获取目录 */
     getCatalogById (id) {
-      return this.$http.post('/api/courese/sendGetData', qs.stringify({
+      return this.$http.post(`${process.env.VUE_APP_API}/courese/sendGetData`, qs.stringify({
         url: `http://mooc1-api.chaoxing.com/gas/course?id=${id}&fields=clazz.fields(id,name).ispublic(true),knowledge.fields(id,name,lastmodifytime,createtime,jobcount,indexOrder,parentnodeid,status,layer,label,card.fields(id,title,cardorder,knowledgeid,description))&view=json`
       }))
     },
     /* 获取视频 */
     getVideo (id, lastmodifytime) {
-      return this.$http.post('/api/courese/sendGetData', qs.stringify({
+      return this.$http.post(`${process.env.VUE_APP_API}/courese/sendGetData`, qs.stringify({
         url: `https://mooc1-2.chaoxing.com/ananas/status/${id}?k=145&flag=normal&_dc=${lastmodifytime}`
       }))
     },
