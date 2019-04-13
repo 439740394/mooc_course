@@ -24,6 +24,7 @@
 </template>
 
 <script>
+/* 引入滑屏组件 */
 import Scroll from './scroll'
 import { courseMixins } from '../../utils/mixin'
 
@@ -34,11 +35,13 @@ export default {
     Scroll
   },
   methods: {
+    /* 点击章节切换目录高亮样式 */
     handleClickChangeData (v) {
       this.setRecommendCatalogActive(v)
     }
   },
   watch: {
+    /* 监听当前章节切换数据 */
     recommendCatalogActive (v) {
       if (v > 0) {
         this.getDetail()

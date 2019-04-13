@@ -47,9 +47,13 @@
 </template>
 
 <script type="text/ecmascript-6">
+/* 引入配置参数 */
 import { RECOMMEND_ID, RECOMMEND_LIST } from '../config/config'
+/* 引入滑屏组件 */
 import Scroll from 'components/common/scroll'
+/* 引入vue混入方法 */
 import { courseMixins } from '../utils/mixin'
+/* 引入加载组件 */
 import Loading from 'components/common/loading'
 
 export default {
@@ -69,7 +73,7 @@ export default {
     this.getDataList()
   },
   methods: {
-    /* 进入目录详情页 */
+    /* 点击进入目录详情页 */
     handleClickEnterDetail (id, qrcodeUrl) {
       this.setRecommendQrcodeUrl(`https://mooc1-api.chaoxing.com/teachingClassPhoneManage/phone/toParticipateCls?appId=1000&inviteCode=${qrcodeUrl}`)
       this.$router.push(`/recommend/${id}`)

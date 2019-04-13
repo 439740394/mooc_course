@@ -15,7 +15,9 @@
 
 <script>
 import { courseMixins } from '../../utils/mixin'
+/* 引入滑屏组件 */
 import Scroll from './scroll'
+/* 引入视频组件 */
 import Player from './Player'
 
 export default {

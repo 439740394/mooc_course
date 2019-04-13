@@ -25,14 +25,25 @@
         <img src="../../assets/images/back_icon.png" alt="">
       </div>
     </div>
+    <div class="loading-wrapper" v-show="recommendCatalogList.length < 1">
+      <loading></loading>
+    </div>
   </div>
 </template>
 
 <script>
+/* 引入vue混入方法 */
 import { courseMixins } from '../../utils/mixin'
+/* 引入目录组件 */
 import Catalog from '../common/catalog'
+/* 引入详情组件 */
 import Detail from '../common/detail'
+/* 引入二维码提示组件 */
 import DetailTips from '../common/detailTips'
+/* 引入加载组件 */
+import Loading from '../common/loading'
+/* 引入localStorage组件 */
+import { saveCatalog, getCatalog } from "../../utils/localStorage"
 
 export default {
   name: 'recommendView',
@@ -40,7 +51,8 @@ export default {
   components: {
     Catalog,
     Detail,
-    DetailTips
+    DetailTips,
+    Loading
   },
   created () {
     this.getData()
@@ -55,10 +67,18 @@ export default {
     getData () {
       /* 自动获取数据 */
       const courseId = this.$route.params.id
+      /* 如果存储了localStorage则读取存储的目录 */
+      if (getCatalog(courseId)) {
+        this.setRecommendCatalogList(getCatalog(courseId))
+        this.setRecommendCatalogActive(1)
+        this.getDetail()
+        return
+      }
       this.getCatalogById(courseId).then(res => {
         const data = res.data.data[0].knowledge.data
         if (data && data.length > 0) {
           const catalogList = this.quickSort(this.arrangementData(data))
+          saveCatalog(courseId, catalogList)
           this.setRecommendCatalogList(catalogList)
           this.setRecommendCatalogActive(1)
           this.getDetail()
@@ -146,6 +166,15 @@ export default {
         right: 90px;
         top: 92px;
       }
+    }
+    .loading-wrapper {
+      position: absolute;
+      top: 184px;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(0, 0, 0, .5);
+      @include wrap-around;
     }
   }
 </style>

@@ -12,6 +12,14 @@
       </div>
       <span>班级课程二维码</span>
     </div>
+    <div class="text-pos">
+      <div class="text">
+        <h3>《使用说明》</h3>
+          <span>
+            ①&nbsp;&nbsp;扫描二维码下载学习通；<br>②&nbsp;&nbsp;使用学习通扫描上方课程<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二维码进入课程学习。
+          </span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -54,6 +62,29 @@ export default {
         display: inline-block;
         line-height: 2;
         @include ellipsis;
+      }
+    }
+    .text-pos {
+      width: 100%;
+      margin-top: 20px;
+      h3 {
+        font-weight: 400;
+        font-size: 18px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: #e0525d;
+      }
+      span {
+        display: inline-block;
+        width: 100%;
+        font-size: 14px;
+        line-height: 26px;
+        color: #e0525d;
+        text-align: center;
       }
     }
   }

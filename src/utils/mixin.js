@@ -15,15 +15,17 @@ export const courseMixins = {
     ]),
     /* 返回列表页设置 */
     reset () {
-      this.setRecommendCatalogList([])
       this.setRecommendCatalogActive(0)
       this.setRecommendDetailText('')
       this.setRecommendDetailVideoInfo({})
+      setTimeout(() => {
+        this.setRecommendCatalogList([])
+      }, 300)
     },
     /* 回退 */
     backHistory () {
-      this.reset()
       this.$router.go(-1)
+      this.reset()
     },
     /* 获取课程列表 */
     getDataByUserId (id) {

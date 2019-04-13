@@ -19,8 +19,8 @@ export default {
 
 <style lang="scss" scoped>
   .loading {
-    width: 200px;
-    height: 200px;
+    width: 120px;
+    height: 120px;
     font-size: 20px;
     line-height: 30px;
     display: flex;
@@ -28,13 +28,12 @@ export default {
     align-items: center;
     justify-content: center;
     img {
-      width: 100px;
-      height: 100px;
+      width: 60px;
+      height: 60px;
     }
     span {
       color: #ffffff;
       padding-top: 30px;
-      letter-spacing: 6px;
     }
   }
 </style>
