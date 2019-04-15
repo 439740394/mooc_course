@@ -38,7 +38,7 @@
     <div class="mask" v-show="!recommendAlive">
       <loading></loading>
     </div>
-    <transition name="scale">
+    <transition name="slide-left">
       <router-view></router-view>
     </transition>
   </div>

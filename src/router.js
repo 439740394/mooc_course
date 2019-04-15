@@ -21,7 +21,8 @@ export default new Router({
       path: '/recommend',
       component: recommend,
       meta: {
-        keepAlive: false
+        transition: 0,
+        keepAlive: true
       },
       children: [
         {
@@ -34,6 +35,7 @@ export default new Router({
       path: '/courseList',
       component: courseList,
       meta: {
+        transition: 1,
         keepAlive: true
       },
       children: [

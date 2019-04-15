@@ -246,7 +246,7 @@ export default {
     }
     .loading-wrapper {
       position: absolute;
-      top: 0;
+      top: 264px;
       right: 0;
       bottom: 0;
       left: 0;

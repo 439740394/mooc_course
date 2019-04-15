@@ -59,7 +59,7 @@
           </div>
         </div>
       </div>
-      <transition name="scale">
+      <transition name="slide-left">
         <router-view></router-view>
       </transition>
     </div>
@@ -121,7 +121,7 @@ export default {
       this.selectDataList = this.nowDataList = this.allDataList[this.courseListActiveName.firstnavname][this.courseListActiveName.secondnavname]
       let arr = []
       this.selectDataList.forEach(item => {
-        arr.push(item.Initials)
+        /[A-Z]/.test(item.Initials) ? arr.push(item.Initials) : arr.push('#')
       })
       const res = Array.from(new Set(arr))
       arr = [...res]

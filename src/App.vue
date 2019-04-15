@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
+    <transition :name="transitionName">
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 
@@ -61,6 +63,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "./assets/styles/transition";
   #app {
     position: absolute;
     top: 0;
