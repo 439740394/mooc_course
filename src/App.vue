@@ -11,6 +11,11 @@ import { bind } from './utils/utils'
 
 export default {
   name: 'APP',
+  data () {
+    return {
+      transitionName: ''
+    }
+  },
   mounted () {
     this._reset()
   },
@@ -41,6 +46,15 @@ export default {
           e.stopPropagation()
         }
       }, true)
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      if (to.meta.transition === 1 && from.meta.transition === 0) {
+        this.transitionName = 'slide-right'
+      } else if (to.meta.transition === 0 && from.meta.transition === 1) {
+        this.transitionName = 'slide-left'
+      }
     }
   }
 }

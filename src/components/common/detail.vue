@@ -1,12 +1,12 @@
 <template>
   <div class="detail-wrapper">
     <div class="detail-content">
-      <scroll :data="recommendDetailText" :videoInfo="recommendDetailVideoInfo">
-        <div class="detail-video" v-if="recommendDetailVideoInfo.src">
-          <player :videoUrl="recommendDetailVideoInfo.src" :poster="recommendDetailVideoInfo.poster"></player>
+      <scroll :data="text" :videoInfo="videoInfo">
+        <div class="detail-video" v-if="videoInfo.src">
+          <player :videoUrl="videoInfo.src" :poster="videoInfo.poster"></player>
         </div>
         <div class="detail">
-          <div class="detail-text" v-html="recommendDetailText"></div>
+          <div class="detail-text" v-html="text"></div>
         </div>
       </scroll>
     </div>
@@ -22,6 +22,18 @@ import Player from './Player'
 
 export default {
   name: 'detail.vue',
+  props: {
+    text: {
+      type: String,
+      default: ''
+    },
+    videoInfo: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
+  },
   mixins: [courseMixins],
   components: {
     Scroll,

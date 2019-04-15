@@ -4943,7 +4943,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '14',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'R'
   },
   {
@@ -4956,7 +4956,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '10',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -4969,7 +4969,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '16',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'C'
   },
   {
@@ -4982,7 +4982,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '10',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'Z'
   },
   {
@@ -4995,7 +4995,7 @@ export const COURSE_LIST = [
     'credit': '3',
     'class_hour': '32',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'C'
   },
   {
@@ -5008,7 +5008,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '10',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'C'
   },
   {
@@ -5021,7 +5021,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '17',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'C'
   },
   {
@@ -5034,7 +5034,7 @@ export const COURSE_LIST = [
     'credit': '2',
     'class_hour': '24',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'C'
   },
   {
@@ -5047,7 +5047,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '16',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'S'
   },
   {
@@ -5060,7 +5060,7 @@ export const COURSE_LIST = [
     'credit': '3',
     'class_hour': '33',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5073,7 +5073,7 @@ export const COURSE_LIST = [
     'credit': '2',
     'class_hour': '26',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'C'
   },
   {
@@ -5086,7 +5086,7 @@ export const COURSE_LIST = [
     'credit': '2',
     'class_hour': '27',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'W'
   },
   {
@@ -5099,7 +5099,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '12',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'P'
   },
   {
@@ -5112,7 +5112,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '10',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'C'
   },
   {
@@ -5125,7 +5125,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '10',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'S'
   },
   {
@@ -5138,7 +5138,7 @@ export const COURSE_LIST = [
     'credit': '2',
     'class_hour': '30',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5151,7 +5151,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '19',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'C'
   },
   {
@@ -5164,7 +5164,7 @@ export const COURSE_LIST = [
     'credit': '3',
     'class_hour': '33',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'C'
   },
   {
@@ -5177,7 +5177,7 @@ export const COURSE_LIST = [
     'credit': '4',
     'class_hour': '48',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'C'
   },
   {
@@ -5190,24 +5190,21 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '16',
     'first_classification': '创新创业',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'C'
   },
   {
     'course_name': '大学生创业导论',
-    'en_course_name': 'Startup Introduction'
-  },
-  {
-    'course_name': ' for College Students',
-    'en_course_name': '203386747',
-    'course_id': '姚  凯',
-    'teacher_name': '复旦大学',
-    'school': '教授',
-    'professional': '2',
-    'credit': '27',
-    'class_hour': '创新创业',
-    'first_classification': 'none!!!',
-    'second_classification': 'D'
+    'en_course_name': 'Startup Introduction for College Students',
+    'course_id': '203386747',
+    'teacher_name': '姚  凯',
+    'school': '复旦大学',
+    'professional': '教授',
+    'credit': '2',
+    'class_hour': '27',
+    'first_classification': '创新创业',
+    'second_classification': '其他',
+    'Initials': 'D'
   },
   {
     'course_name': '大学生心理健康教育（中南大学版）',
@@ -5219,7 +5216,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '16',
     'first_classification': '成长基础',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5232,7 +5229,7 @@ export const COURSE_LIST = [
     'credit': '2',
     'class_hour': '24',
     'first_classification': '成长基础',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5245,7 +5242,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '8',
     'first_classification': '成长基础',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'L'
   },
   {
@@ -5258,7 +5255,7 @@ export const COURSE_LIST = [
     'credit': '2',
     'class_hour': '24',
     'first_classification': '成长基础',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5271,7 +5268,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '16',
     'first_classification': '成长基础',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'S'
   },
   {
@@ -5284,7 +5281,7 @@ export const COURSE_LIST = [
     'credit': '2',
     'class_hour': '25',
     'first_classification': '成长基础',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5297,7 +5294,7 @@ export const COURSE_LIST = [
     'credit': '2',
     'class_hour': '22',
     'first_classification': '成长基础',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5310,7 +5307,7 @@ export const COURSE_LIST = [
     'credit': '3',
     'class_hour': '36',
     'first_classification': '成长基础',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5323,7 +5320,7 @@ export const COURSE_LIST = [
     'credit': '2',
     'class_hour': '21',
     'first_classification': '成长基础',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5336,7 +5333,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '12',
     'first_classification': '成长基础',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5349,7 +5346,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '10',
     'first_classification': '成长基础',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5362,24 +5359,21 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '17',
     'first_classification': '成长基础',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
     'course_name': '大学生职业生涯规划（入学版）',
-    'en_course_name': 'College Students Career Planning'
-  },
-  {
-    'course_name': '（Version for  Freshman)',
-    'en_course_name': '203386733',
-    'course_id': '庄明科',
-    'teacher_name': '北京大学',
-    'school': '教授',
-    'professional': '1',
-    'credit': '19',
-    'class_hour': '成长基础',
-    'first_classification': 'none!!!',
-    'second_classification': 'D'
+    'en_course_name': 'College Students Career Planning（Version for  Freshman)',
+    'course_id': '203386733',
+    'teacher_name': '庄明科',
+    'school': '北京大学',
+    'professional': '教授',
+    'credit': '1',
+    'class_hour': '19',
+    'first_classification': '成长基础',
+    'second_classification': '其他',
+    'Initials': 'D'
   },
   {
     'course_name': '大学生就业指导',
@@ -5391,7 +5385,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '19',
     'first_classification': '成长基础',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5404,7 +5398,7 @@ export const COURSE_LIST = [
     'credit': '0.5',
     'class_hour': '8',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'X'
   },
   {
@@ -5417,7 +5411,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '15',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'Z'
   },
   {
@@ -5430,7 +5424,7 @@ export const COURSE_LIST = [
     'credit': '3',
     'class_hour': '38',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'X'
   },
   {
@@ -5443,7 +5437,7 @@ export const COURSE_LIST = [
     'credit': '3',
     'class_hour': '38',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'J'
   },
   {
@@ -5456,7 +5450,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '13',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'X'
   },
   {
@@ -5469,7 +5463,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '13',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5482,7 +5476,7 @@ export const COURSE_LIST = [
     'credit': '2',
     'class_hour': '24',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'X'
   },
   {
@@ -5495,7 +5489,7 @@ export const COURSE_LIST = [
     'credit': '5',
     'class_hour': '51',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'M'
   },
   {
@@ -5508,7 +5502,7 @@ export const COURSE_LIST = [
     'credit': '3',
     'class_hour': '40',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'S'
   },
   {
@@ -5521,7 +5515,7 @@ export const COURSE_LIST = [
     'credit': '3',
     'class_hour': '40',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'Z'
   },
   {
@@ -5534,7 +5528,7 @@ export const COURSE_LIST = [
     'credit': '3',
     'class_hour': '40',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'M'
   },
   {
@@ -5547,7 +5541,7 @@ export const COURSE_LIST = [
     'credit': '2',
     'class_hour': '25',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5560,7 +5554,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '11',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5573,7 +5567,7 @@ export const COURSE_LIST = [
     'credit': '4',
     'class_hour': '88',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'G'
   },
   {
@@ -5586,7 +5580,7 @@ export const COURSE_LIST = [
     'credit': '4',
     'class_hour': '88',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'G'
   },
   {
@@ -5599,7 +5593,7 @@ export const COURSE_LIST = [
     'credit': '3',
     'class_hour': '36',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'J'
   },
   {
@@ -5612,7 +5606,7 @@ export const COURSE_LIST = [
     'credit': '3',
     'class_hour': '36',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'J'
   },
   {
@@ -5625,40 +5619,34 @@ export const COURSE_LIST = [
     'credit': '3',
     'class_hour': '36',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'J'
   },
   {
     'course_name': '大学国文（上）',
-    'en_course_name': 'College ChineseⅠ'
-  },
-  {
-    'course_name': '(Version 64 Class Hours)',
-    'en_course_name': '203386469',
-    'course_id': '王步高',
-    'teacher_name': '东南大学',
-    'school': '教授',
-    'professional': '4',
-    'credit': '45',
-    'class_hour': '公共必修',
-    'first_classification': 'none!!!',
-    'second_classification': 'D'
+    'en_course_name': 'College ChineseⅠ (Version 64 Class Hours)',
+    'course_id': '203386469',
+    'teacher_name': '王步高',
+    'school': '东南大学',
+    'professional': '教授',
+    'credit': '4',
+    'class_hour': '45',
+    'first_classification': '公共必修',
+    'second_classification': '其他',
+    'Initials': 'D'
   },
   {
     'course_name': '大学国文（下）',
-    'en_course_name': 'College Chinese II'
-  },
-  {
-    'course_name': '(Version 64 Class Hours)',
-    'en_course_name': '203386466',
-    'course_id': '王步高',
-    'teacher_name': '东南大学',
-    'school': '教授',
-    'professional': '4',
-    'credit': '58',
-    'class_hour': '公共必修',
-    'first_classification': 'none!!!',
-    'second_classification': 'D'
+    'en_course_name': 'College Chinese II (Version 64 Class Hours)',
+    'course_id': '203386466',
+    'teacher_name': '王步高',
+    'school': '东南大学',
+    'professional': '教授',
+    'credit': '4',
+    'class_hour': '58',
+    'first_classification': '公共必修',
+    'second_classification': '其他',
+    'Initials': 'D'
   },
   {
     'course_name': '大学物理（上）',
@@ -5670,7 +5658,7 @@ export const COURSE_LIST = [
     'credit': '4',
     'class_hour': '63',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5683,7 +5671,7 @@ export const COURSE_LIST = [
     'credit': '4',
     'class_hour': '43',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5696,7 +5684,7 @@ export const COURSE_LIST = [
     'credit': '1',
     'class_hour': '17',
     'first_classification': '公共必修',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'D'
   },
   {
@@ -5709,7 +5697,7 @@ export const COURSE_LIST = [
     'credit': '4',
     'class_hour': '80',
     'first_classification': '个人发展',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'G'
   },
   {
@@ -5722,7 +5710,7 @@ export const COURSE_LIST = [
     'credit': '4',
     'class_hour': '80',
     'first_classification': '个人发展',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': 'G'
   },
   {
@@ -5735,7 +5723,7 @@ export const COURSE_LIST = [
     'credit': '不计课时和学分',
     'class_hour': '不计课时和学分',
     'first_classification': '个人发展',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': '2'
   },
   {
@@ -5748,7 +5736,7 @@ export const COURSE_LIST = [
     'credit': '不计课时和学分',
     'class_hour': '不计课时和学分',
     'first_classification': '个人发展',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': '2'
   },
   {
@@ -5761,7 +5749,7 @@ export const COURSE_LIST = [
     'credit': '不计课时和学分',
     'class_hour': '不计课时和学分',
     'first_classification': '个人发展',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': '2'
   },
   {
@@ -5774,7 +5762,7 @@ export const COURSE_LIST = [
     'credit': '不计课时和学分',
     'class_hour': '不计课时和学分',
     'first_classification': '个人发展',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': '2'
   },
   {
@@ -5787,7 +5775,7 @@ export const COURSE_LIST = [
     'credit': '不计课时和学分',
     'class_hour': '不计课时和学分',
     'first_classification': '个人发展',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': '2'
   },
   {
@@ -5800,7 +5788,7 @@ export const COURSE_LIST = [
     'credit': '不计课时和学分',
     'class_hour': '不计课时和学分',
     'first_classification': '个人发展',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': '2'
   },
   {
@@ -5813,7 +5801,7 @@ export const COURSE_LIST = [
     'credit': '不计课时和学分',
     'class_hour': '不计课时和学分',
     'first_classification': '个人发展',
-    'second_classification': 'none!!!',
+    'second_classification': '其他',
     'Initials': '2'
   }
 ]

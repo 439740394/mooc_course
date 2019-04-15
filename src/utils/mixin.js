@@ -11,15 +11,27 @@ export const courseMixins = {
       'setRecommendActiveName',
       'setRecommendCatalogActive',
       'setRecommendDetailText',
-      'setRecommendDetailVideoInfo'
+      'setRecommendDetailVideoInfo',
+      'setCourseListAlive',
+      'setCourseListNavList',
+      'setCourseListCatalogList',
+      'setCourseListQrcodeUrl',
+      'setCourseListActiveName',
+      'setCourseListCatalogActive',
+      'setCourseListDetailText',
+      'setCourseListDetailVideoInfo'
     ]),
     /* 返回列表页设置 */
     reset () {
       this.setRecommendCatalogActive(0)
       this.setRecommendDetailText('')
       this.setRecommendDetailVideoInfo({})
+      this.setCourseListCatalogActive(0)
+      this.setCourseListDetailText('')
+      this.setCourseListDetailVideoInfo({})
       setTimeout(() => {
         this.setRecommendCatalogList([])
+        this.setCourseListCatalogList([])
       }, 300)
     },
     /* 回退 */
@@ -46,48 +58,92 @@ export const courseMixins = {
       }))
     },
     /* 请求筛选详情数据 */
-    getDetail () {
-      const card = this.recommendCatalogList[this.recommendCatalogActive].card.data
-      const lastmodifytime = this.recommendCatalogList[this.recommendCatalogActive].lastmodifytime
-      let html = ''
-      const reg1 = /style\s*?=\s*?([‘"])[\s\S]*?\1/g
-      const reg2 = /objectid/
-      const reg3 = /iframe/
-      const reg4 = /href="[^"]*"/g
-      const reg5 = /workid/
-      card.forEach(item => {
-        const desc = item.description
-        if (!(reg3.test(desc) && reg5.test(desc))) {
-          html += desc
-          html = html.replace(reg4, 'href="javascript:void(0);"')
-          html = html.replace(reg1, '')
-        }
-        this.setRecommendDetailVideoInfo({})
-        if (reg2.test(desc) && reg3.test(desc)) {
-          let oDiv = document.createElement('div')
-          oDiv.innerHTML = desc
-          const iframe = oDiv.getElementsByTagName('iframe')[0]
-          const id = JSON.parse(iframe.getAttribute('data')).objectid
-          this.getVideo(id, lastmodifytime).then(res => {
-            const data = res.data
-            let videoJson = {}
-            if (data && data.screenshot) {
-              videoJson.poster = data.screenshot
-            }
-            if (data && data.httphd) {
-              videoJson.src = data.httphd
-            } else if (data && data.httpmd) {
-              videoJson.src = res.data.httphd
-            } else if (data && data.http) {
-              videoJson.src = data.http
-            }
-            this.setRecommendDetailVideoInfo(videoJson)
-          }).catch(err => {
-            console.log(err)
-          })
-        }
-      })
-      this.setRecommendDetailText(html)
+    getDetail (v) {
+      if (v === 0) {
+        const card = this.recommendCatalogList[this.recommendCatalogActive].card.data
+        const lastmodifytime = this.recommendCatalogList[this.recommendCatalogActive].lastmodifytime
+        let html = ''
+        const reg1 = /style\s*?=\s*?([‘"])[\s\S]*?\1/g
+        const reg2 = /objectid/
+        const reg3 = /iframe/
+        const reg4 = /href="[^"]*"/g
+        const reg5 = /workid/
+        card.forEach(item => {
+          const desc = item.description
+          if (!(reg3.test(desc) && reg5.test(desc))) {
+            html += desc
+            html = html.replace(reg4, 'href="javascript:void(0);"')
+            html = html.replace(reg1, '')
+          }
+          this.setRecommendDetailVideoInfo({})
+          if (reg2.test(desc) && reg3.test(desc)) {
+            let oDiv = document.createElement('div')
+            oDiv.innerHTML = desc
+            const iframe = oDiv.getElementsByTagName('iframe')[0]
+            const id = JSON.parse(iframe.getAttribute('data')).objectid
+            this.getVideo(id, lastmodifytime).then(res => {
+              const data = res.data
+              let videoJson = {}
+              if (data && data.screenshot) {
+                videoJson.poster = data.screenshot
+              }
+              if (data && data.httphd) {
+                videoJson.src = data.httphd
+              } else if (data && data.httpmd) {
+                videoJson.src = res.data.httphd
+              } else if (data && data.http) {
+                videoJson.src = data.http
+              }
+              this.setRecommendDetailVideoInfo(videoJson)
+              this.setRecommendDetailText(html)
+            }).catch(err => {
+              console.log(err)
+            })
+          }
+        })
+      } else {
+        const card = this.courseListCatalogList[this.courseListCatalogActive].card.data
+        const lastmodifytime = this.courseListCatalogList[this.courseListCatalogActive].lastmodifytime
+        let html = ''
+        const reg1 = /style\s*?=\s*?([‘"])[\s\S]*?\1/g
+        const reg2 = /objectid/
+        const reg3 = /iframe/
+        const reg4 = /href="[^"]*"/g
+        const reg5 = /workid/
+        card.forEach(item => {
+          const desc = item.description
+          if (!(reg3.test(desc) && reg5.test(desc))) {
+            html += desc
+            html = html.replace(reg4, 'href="javascript:void(0);"')
+            html = html.replace(reg1, '')
+          }
+          this.setCourseListDetailVideoInfo({})
+          if (reg2.test(desc) && reg3.test(desc)) {
+            let oDiv = document.createElement('div')
+            oDiv.innerHTML = desc
+            const iframe = oDiv.getElementsByTagName('iframe')[0]
+            const id = JSON.parse(iframe.getAttribute('data')).objectid
+            this.getVideo(id, lastmodifytime).then(res => {
+              const data = res.data
+              let videoJson = {}
+              if (data && data.screenshot) {
+                videoJson.poster = data.screenshot
+              }
+              if (data && data.httphd) {
+                videoJson.src = data.httphd
+              } else if (data && data.httpmd) {
+                videoJson.src = res.data.httphd
+              } else if (data && data.http) {
+                videoJson.src = data.http
+              }
+              this.setCourseListDetailVideoInfo(videoJson)
+              this.setCourseListDetailText(html)
+            }).catch(err => {
+              console.log(err)
+            })
+          }
+        })
+      }
     },
     /* 整理数据 */
     arrangementData (arr) {
@@ -143,7 +199,15 @@ export const courseMixins = {
       'recommendActiveName',
       'recommendCatalogActive',
       'recommendDetailText',
-      'recommendDetailVideoInfo'
+      'recommendDetailVideoInfo',
+      'courseListAlive',
+      'courseListNavList',
+      'courseListCatalogList',
+      'courseListQrcodeUrl',
+      'courseListActiveName',
+      'courseListCatalogActive',
+      'courseListDetailText',
+      'courseListDetailVideoInfo'
     ])
   }
 }

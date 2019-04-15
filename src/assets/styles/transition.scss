@@ -11,6 +11,18 @@
 .slide-left-enter, .slide-left-leave-to {
   transform: translate3d(100%, 0, 0);
 }
-.slide-left-enter-active, .slide-left-leave-active, .scale-enter-active, .scale-leave-active {
+.slide-right-enter-to, .slide-right-leave {
+  transform: translate3d(0, 0, 0);
+}
+.slide-right-enter, .slide-right-leave-to {
+  transform: translate3d(-100%, 0, 0);
+}
+.fade-enter, fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to, fade-leave {
+  opacity: 1;
+}
+.slide-left-enter-active, .slide-left-leave-active, .scale-enter-active, .scale-leave-active, .slide-right-enter-active, .slide-right-leave-active, .fade-enter-active, .fade-leave-active {
   transition: all .3s linear;
 }

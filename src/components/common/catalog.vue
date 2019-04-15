@@ -3,17 +3,17 @@
     <h3 class="title"><i></i>目录</h3>
     <div class="catalog-content">
       <scroll
-        :data="recommendCatalogList">
+        :data="catalogList">
         <ul>
           <li
-            :class="{unit: item.unit, 'unit-item': item['unit-item'], active: index === recommendCatalogActive}"
-            v-for="(item, index) of recommendCatalogList"
+            :class="{unit: item.unit, 'unit-item': item['unit-item'], active: index === catalogActive}"
+            v-for="(item, index) of catalogList"
             :key="item.id">
             <div v-if="item.unit">
               <i></i>
               <span>第{{item.label}}单元 <b>{{item.name}}</b></span>
             </div>
-            <div v-else ref="unitItem" @click="handleClickChangeData(index)">
+            <div v-else @click="handleClickChangeData(index)">
               <span>{{item.label}}&nbsp;{{item.name}}</span>
             </div>
           </li>
@@ -30,6 +30,18 @@ import { courseMixins } from '../../utils/mixin'
 
 export default {
   name: 'catalog',
+  props: {
+    catalogList: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
+    catalogActive: {
+      type: Number,
+      default: -1
+    }
+  },
   mixins: [courseMixins],
   components: {
     Scroll
@@ -37,14 +49,8 @@ export default {
   methods: {
     /* 点击章节切换目录高亮样式 */
     handleClickChangeData (v) {
-      this.setRecommendCatalogActive(v)
-    }
-  },
-  watch: {
-    /* 监听当前章节切换数据 */
-    recommendCatalogActive (v) {
-      if (v > 0) {
-        this.getDetail()
+      if (v !== this.catalogActive) {
+        this.$emit('changecatalogactive', v)
       }
     }
   }

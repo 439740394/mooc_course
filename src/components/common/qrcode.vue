@@ -49,7 +49,6 @@ export default {
   },
   watch: {
     qrcodeUrl () {
-      this.destroyQrcode()
       this.qrcode.makeCode(this.qrcodeUrl)
     }
   }

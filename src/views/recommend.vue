@@ -17,8 +17,7 @@
     </div>
     <div class="course-list-content">
       <scroll
-        :data="nowDataList"
-        :scrollbar="true">
+        :data="nowDataList">
         <div
            v-for="item of nowDataList"
            :key="item.id"
@@ -34,7 +33,7 @@
         </div>
       </scroll>
     </div>
-    <div class="course-router">
+    <div class="course-router" @click="handleClickCourseList">
       <span>全部课程</span>
     </div>
     <div class="mask" v-show="!recommendAlive">
@@ -73,6 +72,10 @@ export default {
     this.getDataList()
   },
   methods: {
+    /* 点击进入全部课程列表 */
+    handleClickCourseList () {
+      this.$router.push('/courseList')
+    },
     /* 点击进入目录详情页 */
     handleClickEnterDetail (id, qrcodeUrl) {
       this.setRecommendQrcodeUrl(`https://mooc1-api.chaoxing.com/teachingClassPhoneManage/phone/toParticipateCls?appId=1000&inviteCode=${qrcodeUrl}`)
@@ -85,12 +88,12 @@ export default {
         let datas = {}
         let navs = []
         resList.forEach((item, i) => {
-          item.school = RECOMMEND_LIST[i].school
-          item.professional = RECOMMEND_LIST[i].professional
-          item.firstnavname = RECOMMEND_LIST[i].first_classification
-          item.tearcherintroduction = RECOMMEND_LIST[i].teacher_introduction
-          item.courseintroduction = RECOMMEND_LIST[i].course_introduction
-          const invitecode = item.clazz.data[0].invitecode
+          item.school = RECOMMEND_LIST[i].school.trim()
+          item.professional = RECOMMEND_LIST[i].professional.trim()
+          item.firstnavname = RECOMMEND_LIST[i].first_classification.trim()
+          item.tearcherintroduction = RECOMMEND_LIST[i].teacher_introduction.trim()
+          item.courseintroduction = RECOMMEND_LIST[i].course_introduction.trim()
+          const invitecode = item.clazz.data[0].invitecode.trim()
           item.invitecode = invitecode
           if (!datas[item.firstnavname]) {
             datas[item.firstnavname] = []

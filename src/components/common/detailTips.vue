@@ -8,7 +8,7 @@
     </div>
     <div class="qrcode-pos">
       <div class="qrcode-wrapper">
-        <qrcode :qrcodeWidth="94" :qrcodeHeight="94" :qrcodeUrl="recommendQrcodeUrl"></qrcode>
+        <qrcode :qrcodeWidth="140" :qrcodeHeight="140" :qrcodeUrl="qrcodeUrl"></qrcode>
       </div>
       <span>班级课程二维码</span>
     </div>
@@ -30,6 +30,12 @@ import { courseMixins } from '../../utils/mixin'
 
 export default {
   name: 'detailTips',
+  props: {
+    qrcodeUrl: {
+      type: String,
+      default: 'https://www.baidu.com'
+    }
+  },
   mixins: [courseMixins],
   components: {
     Qrcode
@@ -50,8 +56,8 @@ export default {
       width: 100%;
       @include column-Center;
       .qrcode-wrapper {
-        width: 94px;
-        height: 94px;
+        width: 140px;
+        height: 140px;
         img {
           width: 100%;
           height: 100%;
