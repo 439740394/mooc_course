@@ -7,7 +7,7 @@
             v-for="(item, index) of recommendNavList" :key="index"
             class="nav-item"
             :class="{active: item === recommendActiveName}"
-            @click="handleClickBackTo({path: '/recommend', query: {firstnavname: item}})">
+            @click="handleClickBackTo(item)">
             <span>{{item}}</span>
           </div>
         </div>
@@ -65,7 +65,8 @@ export default {
     /* 点击导航返回上一级 */
     handleClickBackTo (v) {
       this.reset()
-      this.$router.push(v)
+      this.setRecommendActiveName(v)
+      this.$router.push('/recommend')
     },
     /* 获取目录数据 */
     getData () {

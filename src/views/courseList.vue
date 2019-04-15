@@ -7,14 +7,14 @@
             <div class="nav-list">
               <ul>
                 <li
-                  @click.stop="handleClickSelect({path: '/courseList', query: { firstnavname: key }})"
+                  @click.stop="handleClickSelect({ firstnavname: key, secondnavname: courseListNavList[key][0] })"
                   :class="{active: courseListActiveName.firstnavname === key}"
                   v-for="(item, key, index) of courseListNavList"
                   :key="index">
                   <span>{{key}}</span>
                   <ol v-if="courseListActiveName.firstnavname === key">
                     <li
-                      @click.stop="handleClickSelect({ path: '/courseList', query: { firstnavname: key, secondnavname: val}})"
+                      @click.stop="handleClickSelect({ firstnavname: key, secondnavname: val })"
                       :class="{active: courseListActiveName.secondnavname === val}"
                       v-for="(val, i) of courseListNavList[key]"
                       :key="i">
@@ -105,10 +105,6 @@ export default {
     handleClickEnterRecommend () {
       this.$router.push('/recommend')
     },
-    /* 点击筛选数据 */
-    handleClickSelect (v) {
-      this.$router.push(v)
-    },
     /* 点击进入详情页 */
     handleClickEnterDetail (id, qrcodeUrl) {
       this.setCourseListQrcodeUrl(`https://mooc1-api.chaoxing.com/teachingClassPhoneManage/phone/toParticipateCls?appId=1000&inviteCode=${qrcodeUrl}`)
@@ -120,45 +116,16 @@ export default {
       this.selectDataList = this.nowDataList.filter(item => item.Initials === v)
     },
     /* 选取数据 */
-    selectData () {
-      let val = null
-      if (!this.$route.query.firstnavname) {
-        let firstName = ''
-        let json = {}
-        for (let key in this.courseListNavList) {
-          if (firstName === '') {
-            firstName = key
-          }
-          if (!json[key]) {
-            json[key] = []
-          }
-          for (let i = 0; i < this.courseListNavList[key].length; i++) {
-            json[key].push(this.courseListNavList[key][i])
-          }
-        }
-        val = `{"firstnavname": "${firstName}","secondnavname": "${json[firstName][0]}"}`
-      } else if (this.$route.query && this.$route.query.firstnavname && this.$route.query.secondnavname) {
-        val = `{"firstnavname": "${this.$route.query.firstnavname}","secondnavname": "${this.$route.query.secondnavname}"}`
-      } else if (this.$route.query && this.$route.query.firstnavname && !this.$route.query.secondnavname) {
-        const front = this.$route.query.firstnavname
-        val = `{"firstnavname": "${front}","secondnavname": "${this.courseListNavList[front][0]}"}`
-      }
-      val = JSON.parse(val)
-      this.setCourseListActiveName(val)
+    handleClickSelect (v) {
+      this.setCourseListActiveName(v)
       this.selectDataList = this.nowDataList = this.allDataList[this.courseListActiveName.firstnavname][this.courseListActiveName.secondnavname]
-      let initials = {}
+      let arr = []
       this.selectDataList.forEach(item => {
-        if (!initials[item.Initials]) {
-          initials[item.Initials] = ''
-        }
+        arr.push(item.Initials)
       })
-      let initialsList = []
-      for (let key in initials) {
-        initialsList.push(key)
-      }
-      initialsList.sort()
-      this.initials = initialsList
-      this.initialsActive = -1
+      const res = Array.from(new Set(arr))
+      arr = [...res]
+      this.initials = arr
     },
     /* 获取课程列表数据 */
     getDataList () {
@@ -202,7 +169,26 @@ export default {
           }
         }
         this.setCourseListNavList(navList)
-        this.selectData()
+        let firstName = ''
+        let secondName = ''
+        let json = {}
+        for (let key in this.courseListNavList) {
+          if (firstName === '') {
+            firstName = key
+          }
+          if (!json[key]) {
+            json[key] = []
+          }
+          for (let i = 0; i < this.courseListNavList[key].length; i++) {
+            json[key].push(this.courseListNavList[key][i])
+            if (secondName === '') {
+              secondName = json[key][i]
+            }
+          }
+        }
+        let v = `{ "firstnavname": "${firstName}", "secondnavname": "${secondName}"}`
+        v = JSON.parse(v)
+        this.handleClickSelect(v)
         this.setCourseListAlive(true)
       }).catch(err => {
         console.log(err)
@@ -211,18 +197,8 @@ export default {
     }
   },
   watch: {
-    '$route' (v) {
-      if (!v.query.firstnavname) {
-        return false
-      }
-      let val = null
-      if (v.query && v.query.firstnavname && !v.query.secondnavname) {
-        val = '{"firstnavname": "' + this.$route.query.firstnavname + '","secondnavname": "' + this.courseListNavList[0] + '"}'
-      } else if (v.query && v.query.firstnavname && v.query.secondnavname) {
-        val = '{"firstnavname": "' + this.$route.query.firstnavname + '","secondnavname": "' + this.$route.query.secondnavname + '"}'
-      }
-      val = JSON.parse(val)
-      this.selectData(val)
+    courseListActiveName (v) {
+      this.handleClickSelect(v)
     }
   }
 }
@@ -392,7 +368,7 @@ export default {
               li {
                 width: 100%;
                 font-size: 16px;
-                line-height: 26px;
+                line-height: 24px;
                 text-align: center;
                 &.active {
                   color: $active-color;

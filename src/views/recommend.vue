@@ -4,14 +4,13 @@
       <h3 class="title">超星课程展示平台</h3>
       <div class="nav">
         <div class="nav-content">
-          <router-link
-            tag="div"
+          <div
             v-for="(item, index) of recommendNavList" :key="index"
-            :to="{path: '/recommend', query: {firstnavname: item}}"
+            @click="handleClickSelect(item)"
             class="nav-item"
             :class="{active: item === recommendActiveName}">
             <span>{{item}}</span>
-          </router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -72,6 +71,10 @@ export default {
     this.getDataList()
   },
   methods: {
+    /* 筛选数据 */
+    handleClickSelect (v) {
+      this.setRecommendActiveName(v)
+    },
     /* 点击进入全部课程列表 */
     handleClickCourseList () {
       this.$router.push('/courseList')
@@ -103,28 +106,18 @@ export default {
         })
         this.allDataList = datas
         this.setRecommendNavList(navs)
-        const val = this.$route.query.firstnavname || navs[0]
-        this.selectData(val)
+        this.handleClickSelect(navs[0])
         this.setRecommendAlive(true)
         return false
       }).catch(err => {
         console.log(err)
         this.getDataList()
       })
-    },
-    /* 筛选数据 */
-    selectData (v) {
-      this.setRecommendActiveName(v)
-      this.nowDataList = this.allDataList[this.recommendActiveName]
     }
   },
   watch: {
-    /* 监听路由查询字符串来进行分类 */
-    '$route' (v) {
-      if (v.query && v.query.firstnavname) {
-        const activeName = v.query.firstnavname
-        this.selectData(activeName)
-      }
+    recommendActiveName (v) {
+      this.nowDataList = this.allDataList[v]
     }
   }
 }

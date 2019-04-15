@@ -8,13 +8,13 @@
             v-for="(item, key, index) of courseListNavList"
             :key="index"
             class="nav-item"
-            @click.stop="handleClickBackTo({path: '/courseList', query: { firstnavname: key }})">
+            @click.stop="handleClickBackTo({ firstnavname: key, secondnavname: courseListNavList[key][0] })">
             <span>{{key}}</span>
             <ol v-if="courseListActiveName.firstnavname === key">
               <li
                 v-for="(val, i) of courseListNavList[key]"
                 :key="i"
-                @click.stop="handleClickBackTo({ path: '/courseList', query: { firstnavname: key, secondnavname: val } })">
+                @click.stop="handleClickBackTo({ firstnavname: key, secondnavname: val })">
                 <strong>{{val}}</strong>
                 <div class="nav-active-bar" v-if="courseListActiveName.secondnavname === val">
                   <i></i>
@@ -73,7 +73,8 @@ export default {
     /* 点击导航返回上一级 */
     handleClickBackTo (v) {
       this.reset()
-      this.$router.push(v)
+      this.setCourseListActiveName(v)
+      this.$router.push('/courseList')
     },
     /* 修改目录高亮及数据 */
     changeCatalogActive (v) {
