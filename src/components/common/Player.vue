@@ -35,9 +35,9 @@ export default {
         },
         download: false,
         enterLogo: {
-          url: '',
-          width: 231,
-          height: 42
+          url: '/template/static/images/logo.png',
+          width: 247,
+          height: 103
         },
         enterBg: {
           color: 'rgba(0,0,0,0.87)'

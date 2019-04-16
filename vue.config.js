@@ -4,6 +4,10 @@ function resolve (dir) {
 }
 
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production' ? '/template/' : '/',
+  outputDir: 'dist',
+  assetsDir: 'static',
+  indexPath: 'index.html',
   productionSourceMap: true,
   /* 服务配置 */
   devServer: {
