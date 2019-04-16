@@ -35,7 +35,7 @@ export default {
         },
         download: false,
         enterLogo: {
-          url: '/template/static/images/logo.png',
+          url: '/template/static/img/logo.png',
           width: 247,
           height: 103
         },
