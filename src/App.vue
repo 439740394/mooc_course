@@ -9,7 +9,6 @@
 </template>
 
 <script type="text/ecmascript-6">
-import { bind } from './utils/utils'
 
 export default {
   name: 'APP',
@@ -25,32 +24,39 @@ export default {
     /* 初始化禁止默认事件 */
     _reset () {
       /* 禁止键盘事件 */
-      document.addEventListener(document, 'keydown', (ev) => {
+      this.bind(document, 'keydown', (ev) => {
         const e = ev || window.event
         e.preventDefault()
       })
-      document.addEventListener(document, 'contextmenu', (ev) => {
+      /* 禁止鼠标右键以及长按事件 */
+      this.bind(document, 'contextmenu', (ev) => {
         const e = ev || window.event
         e.preventDefault()
       })
-      document.addEventListener(document, 'dragstart', (ev) => {
+      /* 禁止拖拽事件 */
+      this.bind(document, 'dragstart', (ev) => {
         const e = ev || window.event
         e.preventDefault()
       })
-      document.addEventListener(document, 'touchstart', (ev) => {
+      /* 禁止双指缩放 */
+      this.bind(document, 'touchmove', (ev) => {
         const e = ev || window.event
-        const touchesLength = e.touches.length
+        const touchesLength = e.changedTouches.length
         if (touchesLength > 1) {
           e.preventDefault()
+          e.stopPropagation()
         }
-      }, { passive: false })
-      document.addEventListener(document, 'touchmove', (ev) => {
-        const e = ev || window.event
-        const touchesLength = e.touches.length
-        if (touchesLength > 1) {
-          e.preventDefault()
-        }
-      }, { passive: false })
+      })
+    },
+    bind (el, event, callback) {
+      if (el.addEventListener) {
+        el.addEventListener(event, callback, { passive: false })
+      } else {
+        el.attachEvent('on' + event, () => {
+          callback.call(el)
+        })
+      }
+    }
   },
   watch: {
     '$route' (to, from) {
