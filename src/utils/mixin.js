@@ -115,30 +115,50 @@ export const courseMixins = {
       }
     },
     /* 整理数据 */
-    arrangementData (arr) {
-      const len = arr.length
-      const lenmax = arr[len - 1].layer
-      for (let i = 0; i < len; i++) {
-        if (arr[i].label.indexOf('.') === -1) {
-          arr[i].unit = true
-          arr[i]['unit-item'] = false
+    arrangementData (v) {
+      let oneMaxNum = 0
+      let oneMaxLayer = 0
+      v.forEach(element => {
+        if (element.label.indexOf('.') === -1) {
+          element.unit = true
+          element['unit-item'] = false
         } else {
-          arr[i].unit = false
-          arr[i]['unit-item'] = true
+          element.unit = false
+          element['unit-item'] = true
         }
-        const label = arr[i].label
-        let newLayer = arr[i].layer
-        let arr1 = label.split('.')
-        for (let i = 0; i < arr1.length; i++) {
-          if (arr1[i].length < 2) {
-            arr1[i] = '0' + arr1[i]
+        if (element.layer > oneMaxLayer) {
+          oneMaxLayer = element.layer
+        }
+        const arr = element.label.match(/\d+/g)
+        arr.forEach(item => {
+          if (item.toString().length > oneMaxNum) {
+            oneMaxNum = item.toString().length
           }
+        })
+      })
+      v.forEach(element => {
+        let sortid = ''
+        const arr = element.label.match(/\d+/g)
+        arr.forEach(item => {
+          let zero = ''
+          const zeroNum = oneMaxNum - item.toString().length
+          for (let i = 0; i < zeroNum; i++) {
+            zero += '0'
+          }
+          sortid += zero + item.toString()
+        })
+        element.sortid = sortid
+      })
+      let maxNum = oneMaxNum * oneMaxLayer
+      v.forEach(element => {
+        const zeroNum = maxNum - element.sortid.length
+        let zero = ''
+        for (let i = 0; i < zeroNum; i++) {
+          zero += '0'
         }
-        let newLabel = arr1.join('')
-        newLabel = newLabel * Math.pow(10, (lenmax - newLayer) * 2)
-        arr[i].newLabel = newLabel
-      }
-      return arr
+        element.sortid = Number(element.sortid + zero)
+      })
+      return v
     },
     /* 快速排序 */
     quickSort (arr) {
@@ -150,7 +170,7 @@ export const courseMixins = {
       let left = []
       let right = []
       for (let i = 0; i < arr.length; i++) {
-        if (parseInt(arr[i].newLabel) < parseInt(midNumValue.newLabel)) {
+        if (parseInt(arr[i].sortid) < parseInt(midNumValue.sortid)) {
           left.push(arr[i])
         } else {
           right.push(arr[i])
