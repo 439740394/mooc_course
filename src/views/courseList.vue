@@ -14,11 +14,10 @@
                   <span>{{key}}</span>
                   <ol v-if="courseListActiveName.firstnavname === key">
                     <li
-                      @click.stop="handleClickSelect({ firstnavname: key, secondnavname: val })"
                       :class="{active: courseListActiveName.secondnavname === val}"
                       v-for="(val, i) of courseListNavList[key]"
                       :key="i">
-                      <span>{{val}}</span>
+                      <span @click.stop="handleClickSelect({ firstnavname: key, secondnavname: val })">{{val}}</span>
                     </li>
                   </ol>
                 </li>
@@ -49,7 +48,7 @@
                 :class="{ active: index === initialsActive}"
                 v-for="(item, index) of initials"
                 :key="index"
-                @click="handleClickSelectByInitials(item, index)">
+                @click.stop="handleClickSelectByInitials(item, index)">
                 {{item}}
               </li>
             </ul>
@@ -117,14 +116,16 @@ export default {
     },
     /* 选取数据 */
     handleClickSelect (v) {
+      console.log(v)
       this.setCourseListActiveName(v)
       this.selectDataList = this.nowDataList = this.allDataList[this.courseListActiveName.firstnavname][this.courseListActiveName.secondnavname]
       let arr = []
       this.selectDataList.forEach(item => {
-        /[A-Z]/.test(item.Initials) ? arr.push(item.Initials) : arr.push('#')
+        arr.push(item.Initials)
       })
       const res = Array.from(new Set(arr))
       arr = [...res]
+      arr = arr.sort()
       this.initials = arr
     },
     /* 获取课程列表数据 */
@@ -141,7 +142,7 @@ export default {
           item.invitecode = invitecode.trim()
           item.school = COURSE_LIST[i].school.trim()
           item.professional = COURSE_LIST[i].professional.trim()
-          if (!/[A-Z]/.test(COURSE_LIST[i].Initials.trim())) {
+          if (!(/[A-Z]/.test(COURSE_LIST[i].Initials))) {
             item.Initials = '#'
           } else {
             item.Initials = COURSE_LIST[i].Initials.trim()
@@ -199,6 +200,7 @@ export default {
   watch: {
     courseListActiveName (v) {
       this.handleClickSelect(v)
+      this.initialsActive = -1
     }
   }
 }

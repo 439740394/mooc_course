@@ -67,14 +67,11 @@ export const courseMixins = {
         const reg2 = /objectid/
         const reg3 = /iframe/
         const reg4 = /href="[^"]*"/g
-        const reg5 = /workid/
         card.forEach(item => {
           const desc = item.description
-          if (!(reg3.test(desc) && reg5.test(desc))) {
-            html += desc
-            html = html.replace(reg4, 'href="javascript:void(0);"')
-            html = html.replace(reg1, '')
-          }
+          html += desc
+          html = html.replace(reg4, 'href="javascript:void(0);"')
+          html = html.replace(reg1, '')
           this.setRecommendDetailVideoInfo({})
           if (reg2.test(desc) && reg3.test(desc)) {
             let oDiv = document.createElement('div')
@@ -95,10 +92,10 @@ export const courseMixins = {
                 videoJson.src = data.http
               }
               this.setRecommendDetailVideoInfo(videoJson)
-              this.setRecommendDetailText(html)
             }).catch(err => {
               console.log(err)
             })
+            this.setRecommendDetailText(html)
           }
         })
       } else {
@@ -109,15 +106,12 @@ export const courseMixins = {
         const reg2 = /objectid/
         const reg3 = /iframe/
         const reg4 = /href="[^"]*"/g
-        const reg5 = /workid/
+        this.setCourseListDetailVideoInfo({})
         card.forEach(item => {
           const desc = item.description
-          if (!(reg3.test(desc) && reg5.test(desc))) {
-            html += desc
-            html = html.replace(reg4, 'href="javascript:void(0);"')
-            html = html.replace(reg1, '')
-          }
-          this.setCourseListDetailVideoInfo({})
+          html += desc
+          html = html.replace(reg4, 'href="javascript:void(0);"')
+          html = html.replace(reg1, '')
           if (reg2.test(desc) && reg3.test(desc)) {
             let oDiv = document.createElement('div')
             oDiv.innerHTML = desc
@@ -137,12 +131,12 @@ export const courseMixins = {
                 videoJson.src = data.http
               }
               this.setCourseListDetailVideoInfo(videoJson)
-              this.setCourseListDetailText(html)
             }).catch(err => {
               console.log(err)
             })
           }
         })
+        this.setCourseListDetailText(html)
       }
     },
     /* 整理数据 */

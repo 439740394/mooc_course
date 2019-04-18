@@ -25,30 +25,32 @@ export default {
     /* 初始化禁止默认事件 */
     _reset () {
       /* 禁止键盘事件 */
-      bind(document, 'keydown', (ev) => {
+      document.addEventListener(document, 'keydown', (ev) => {
         const e = ev || window.event
         e.preventDefault()
       })
-      /* 禁止鼠标右键以及长按事件 */
-      bind(document, 'contextmenu', (ev) => {
+      document.addEventListener(document, 'contextmenu', (ev) => {
         const e = ev || window.event
         e.preventDefault()
       })
-      /* 禁止拖拽事件 */
-      bind(document, 'dragstart', (ev) => {
+      document.addEventListener(document, 'dragstart', (ev) => {
         const e = ev || window.event
         e.preventDefault()
       })
-      /* 禁止双指缩放 */
-      bind(document, 'touchmove', (ev) => {
+      document.addEventListener(document, 'touchstart', (ev) => {
         const e = ev || window.event
-        const touchesLength = e.changedTouches.length
+        const touchesLength = e.touches.length
         if (touchesLength > 1) {
           e.preventDefault()
-          e.stopPropagation()
         }
-      }, true)
-    }
+      }, { passive: false })
+      document.addEventListener(document, 'touchmove', (ev) => {
+        const e = ev || window.event
+        const touchesLength = e.touches.length
+        if (touchesLength > 1) {
+          e.preventDefault()
+        }
+      }, { passive: false })
   },
   watch: {
     '$route' (to, from) {
