@@ -10,14 +10,14 @@
 
 <script type="text/ecmascript-6">
 document.addEventListener('DOMContentLoaded', () => {
-  document.addEventListener('keydown', () => {
-    return false
+  document.addEventListener('keydown', (e) => {
+    e.preventDefault()
   })
-  document.addEventListener('contextmenu', () => {
-    return false
+  document.addEventListener('contextmenu', (e) => {
+    e.preventDefault()
   })
-  document.addEventListener('dragstart', () => {
-    return false
+  document.addEventListener('dragstart', (e) => {
+    e.preventDefault()
   })
   document.addEventListener('touchstart', (e) => {
     if (e.touches.length >= 2) {
