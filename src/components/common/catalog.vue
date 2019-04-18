@@ -14,7 +14,7 @@
               <span>第{{item.label}}单元 <b>{{item.name}}</b></span>
             </div>
             <div v-else @click="handleClickChangeData(index)">
-              <span>{{item.label}}&nbsp;{{item.name}}</span>
+              <span :style="{ paddingLeft: (item.label.match(/\.\d+/g).length * 10) + 40 + 'px' }">{{item.label}}&nbsp;{{item.name}}</span>
             </div>
           </li>
         </ul>
@@ -128,7 +128,6 @@ export default {
           @include ellipsis;
           span {
             display: inline-block;
-            padding-left: 50px;
             line-height: 34px;
             font-size: $introduction-font-size;
           }

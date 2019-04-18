@@ -9,53 +9,33 @@
 </template>
 
 <script type="text/ecmascript-6">
+document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('keydown', () => {
+    return false
+  })
+  document.addEventListener('contextmenu', () => {
+    return false
+  })
+  document.addEventListener('dragstart', () => {
+    return false
+  })
+  document.addEventListener('touchstart', (e) => {
+    if (e.touches.length >= 2) {
+      e.preventDefault()
+    }
+  }, { passive: false })
+  document.addEventListener('touchmove', (e) => {
+    if (e.touches.length >= 2) {
+      e.preventDefault()
+    }
+  }, { passive: false })
+})
 
 export default {
   name: 'APP',
   data () {
     return {
       transitionName: ''
-    }
-  },
-  mounted () {
-    this._reset()
-  },
-  methods: {
-    /* 初始化禁止默认事件 */
-    _reset () {
-      /* 禁止键盘事件 */
-      this.bind(document, 'keydown', (ev) => {
-        const e = ev || window.event
-        e.preventDefault()
-      })
-      /* 禁止鼠标右键以及长按事件 */
-      this.bind(document, 'contextmenu', (ev) => {
-        const e = ev || window.event
-        e.preventDefault()
-      })
-      /* 禁止拖拽事件 */
-      this.bind(document, 'dragstart', (ev) => {
-        const e = ev || window.event
-        e.preventDefault()
-      })
-      /* 禁止双指缩放 */
-      this.bind(document, 'touchmove', (ev) => {
-        const e = ev || window.event
-        const touchesLength = e.changedTouches.length
-        if (touchesLength > 1) {
-          e.preventDefault()
-          e.stopPropagation()
-        }
-      })
-    },
-    bind (el, event, callback) {
-      if (el.addEventListener) {
-        el.addEventListener(event, callback, { passive: false })
-      } else {
-        el.attachEvent('on' + event, () => {
-          callback.call(el)
-        })
-      }
     }
   },
   watch: {

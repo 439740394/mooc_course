@@ -59,83 +59,58 @@ export const courseMixins = {
     },
     /* 请求筛选详情数据 */
     getDetail (v) {
+      let card = null
+      let lastmodifytime = null
       if (v === 0) {
-        const card = this.recommendCatalogList[this.recommendCatalogActive].card.data
-        const lastmodifytime = this.recommendCatalogList[this.recommendCatalogActive].lastmodifytime
-        let html = ''
-        const reg1 = /style\s*?=\s*?([‘"])[\s\S]*?\1/g
-        const reg2 = /objectid/
-        const reg3 = /iframe/
-        const reg4 = /href="[^"]*"/g
-        card.forEach(item => {
-          const desc = item.description
-          html += desc
-          html = html.replace(reg4, 'href="javascript:void(0);"')
-          html = html.replace(reg1, '')
-          this.setRecommendDetailVideoInfo({})
-          if (reg2.test(desc) && reg3.test(desc)) {
-            let oDiv = document.createElement('div')
-            oDiv.innerHTML = desc
-            const iframe = oDiv.getElementsByTagName('iframe')[0]
-            const id = JSON.parse(iframe.getAttribute('data')).objectid
-            this.getVideo(id, lastmodifytime).then(res => {
-              const data = res.data
-              let videoJson = {}
-              if (data && data.screenshot) {
-                videoJson.poster = data.screenshot
-              }
-              if (data && data.httphd) {
-                videoJson.src = data.httphd
-              } else if (data && data.httpmd) {
-                videoJson.src = res.data.httphd
-              } else if (data && data.http) {
-                videoJson.src = data.http
-              }
-              this.setRecommendDetailVideoInfo(videoJson)
-            }).catch(err => {
-              console.log(err)
-            })
-            this.setRecommendDetailText(html)
-          }
-        })
+        card = this.recommendCatalogList[this.recommendCatalogActive].card.data
+        lastmodifytime = this.recommendCatalogList[this.recommendCatalogActive].lastmodifytime
       } else {
-        const card = this.courseListCatalogList[this.courseListCatalogActive].card.data
-        const lastmodifytime = this.courseListCatalogList[this.courseListCatalogActive].lastmodifytime
-        let html = ''
-        const reg1 = /style\s*?=\s*?([‘"])[\s\S]*?\1/g
-        const reg2 = /objectid/
-        const reg3 = /iframe/
-        const reg4 = /href="[^"]*"/g
-        this.setCourseListDetailVideoInfo({})
-        card.forEach(item => {
-          const desc = item.description
-          html += desc
-          html = html.replace(reg4, 'href="javascript:void(0);"')
-          html = html.replace(reg1, '')
-          if (reg2.test(desc) && reg3.test(desc)) {
-            let oDiv = document.createElement('div')
-            oDiv.innerHTML = desc
-            const iframe = oDiv.getElementsByTagName('iframe')[0]
-            const id = JSON.parse(iframe.getAttribute('data')).objectid
-            this.getVideo(id, lastmodifytime).then(res => {
-              const data = res.data
-              let videoJson = {}
-              if (data && data.screenshot) {
-                videoJson.poster = data.screenshot
-              }
-              if (data && data.httphd) {
-                videoJson.src = data.httphd
-              } else if (data && data.httpmd) {
-                videoJson.src = res.data.httphd
-              } else if (data && data.http) {
-                videoJson.src = data.http
-              }
+        card = this.courseListCatalogList[this.courseListCatalogActive].card.data
+        lastmodifytime = this.courseListCatalogList[this.courseListCatalogActive].lastmodifytime
+      }
+      let html = ''
+      const reg1 = /style\s*?=\s*?([‘"])[\s\S]*?\1/g
+      const reg2 = /objectid/
+      const reg3 = /iframe/
+      const reg4 = /href="[^"]*"/g
+      this.setRecommendDetailVideoInfo({})
+      this.setCourseListDetailVideoInfo({})
+      card.forEach(item => {
+        const desc = item.description
+        html += desc
+        html = html.replace(reg4, 'href="javascript:void(0);"')
+        html = html.replace(reg1, '')
+        if (reg2.test(desc) && reg3.test(desc)) {
+          let oDiv = document.createElement('div')
+          oDiv.innerHTML = desc
+          const iframe = oDiv.getElementsByTagName('iframe')[0]
+          const id = JSON.parse(iframe.getAttribute('data')).objectid
+          this.getVideo(id, lastmodifytime).then(res => {
+            const data = res.data
+            let videoJson = {}
+            if (data && data.screenshot) {
+              videoJson.poster = data.screenshot
+            }
+            if (data && data.httphd) {
+              videoJson.src = data.httphd
+            } else if (data && data.httpmd) {
+              videoJson.src = res.data.httphd
+            } else if (data && data.http) {
+              videoJson.src = data.http
+            }
+            if (v === 0) {
+              this.setRecommendDetailVideoInfo(videoJson)
+            } else {
               this.setCourseListDetailVideoInfo(videoJson)
-            }).catch(err => {
-              console.log(err)
-            })
-          }
-        })
+            }
+          }).catch(err => {
+            console.log(err)
+          })
+        }
+      })
+      if (v === 0) {
+        this.setRecommendDetailText(html)
+      } else {
         this.setCourseListDetailText(html)
       }
     },

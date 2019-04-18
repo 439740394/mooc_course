@@ -116,7 +116,6 @@ export default {
     },
     /* 选取数据 */
     handleClickSelect (v) {
-      console.log(v)
       this.setCourseListActiveName(v)
       this.selectDataList = this.nowDataList = this.allDataList[this.courseListActiveName.firstnavname][this.courseListActiveName.secondnavname]
       let arr = []

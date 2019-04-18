@@ -54,8 +54,6 @@ import Detail from '../common/detail'
 import DetailTips from '../common/detailTips'
 /* 引入加载组件 */
 import Loading from '../common/loading'
-/* 引入localStorage组件 */
-import { saveCatalog, getCatalog } from '../../utils/localStorage'
 
 export default {
   name: 'recommendView',
@@ -84,22 +82,12 @@ export default {
     getData () {
       /* 自动获取数据 */
       const courseId = this.$route.params.id
-      /* 如果存储了localStorage则读取存储的目录 */
-      if (getCatalog(courseId)) {
-        this.setCourseListCatalogList(getCatalog(courseId))
-        console.log(this.courseListCatalogList)
-        this.setCourseListCatalogActive(1)
-        this.getDetail(1)
-        return false
-      }
       this.getCatalogById(courseId).then(res => {
         const data = res.data.data[0].knowledge.data
         if (data && data.length > 0) {
           const catalogList = this.quickSort(this.arrangementData(data))
-          saveCatalog(courseId, catalogList)
           this.setCourseListCatalogList(catalogList)
           this.setCourseListCatalogActive(1)
-          this.getDetail(1)
         }
       }).catch(err => {
         console.log(err)
