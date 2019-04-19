@@ -6,7 +6,7 @@
         <div class="nav-content">
           <div
             v-for="(item, index) of recommendNavList" :key="index"
-            @click="handleClickSelect(item)"
+            @click.stop="handleClickSelect(item)"
             class="nav-item"
             :class="{active: item === recommendActiveName}">
             <span>{{item}}</span>
@@ -21,7 +21,7 @@
            v-for="item of nowDataList"
            :key="item.id"
            class="course-list-item"
-           @click="handleClickEnterDetail(item.id, item.invitecode)">
+           @click.stop="handleClickEnterDetail(item.id, item.invitecode)">
           <img :src="item.imageurl" alt="">
           <span class="course-tips">[{{item.firstnavname}}]</span>
           <h3 class="course-name">{{item.name}}</h3>
@@ -32,7 +32,7 @@
         </div>
       </scroll>
     </div>
-    <div class="course-router" @click="handleClickCourseList">
+    <div class="course-router" @click.stop="handleClickCourseList">
       <span>全部课程</span>
     </div>
     <div class="mask" v-show="!recommendAlive">
@@ -172,7 +172,7 @@ export default {
     }
     .course-list-content {
       margin-top: 32px;
-      height: 670px;
+      height: 760px;
       overflow: hidden;
       box-sizing: border-box;
       padding: 0 60px;

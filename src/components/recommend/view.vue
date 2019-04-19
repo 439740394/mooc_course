@@ -7,7 +7,7 @@
             v-for="(item, index) of recommendNavList" :key="index"
             class="nav-item"
             :class="{active: item === recommendActiveName}"
-            @click="handleClickBackTo(item)">
+            @click.stop="handleClickBackTo(item)">
             <span>{{item}}</span>
           </div>
         </div>
@@ -21,7 +21,7 @@
         <detail :text="recommendDetailText" :videoInfo="recommendDetailVideoInfo"></detail>
         <detail-tips :qrcodeUrl="recommendQrcodeUrl"></detail-tips>
       </div>
-      <div class="back" @click="backHistory">
+      <div class="back" @click.stop="backHistory">
         <img src="../../assets/images/back_icon.png" alt="">
       </div>
     </div>

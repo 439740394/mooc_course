@@ -33,7 +33,7 @@
         <detail :text="courseListDetailText" :videoInfo="courseListDetailVideoInfo"></detail>
         <detail-tips :qrcodeUrl="courseListQrcodeUrl"></detail-tips>
       </div>
-      <div class="back" @click="backHistory">
+      <div class="back" @click.stop="backHistory">
         <img src="../../assets/images/back_icon.png" alt="">
       </div>
     </div>

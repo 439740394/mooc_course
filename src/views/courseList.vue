@@ -30,7 +30,7 @@
                 class="list-item"
                 v-for="item of selectDataList"
                 :key="item.id"
-                @click="handleClickEnterDetail(item.id, item.invitecode)">
+                @click.stop="handleClickEnterDetail(item.id, item.invitecode)">
                 <div class="list-item-img">
                   <img :src="item.imageurl" alt="">
                 </div>
