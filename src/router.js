@@ -5,9 +5,9 @@ import recommend from 'views/recommend'
 /* 引入课程列表组件 */
 import courseList from 'views/courseList'
 /* 引入推荐详情组件 */
-import recommendDetail from 'components/recommend/view'
+import recommendDetail from 'components/recommend/index'
 /* 引入课程列表详情组件 */
-import courseListDetail from 'components/courseList/view'
+import courseListDetail from 'components/courseList/index'
 
 Vue.use(Router)
 

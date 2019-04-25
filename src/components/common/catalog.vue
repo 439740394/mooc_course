@@ -3,11 +3,11 @@
     <h3 class="title"><i></i>目录</h3>
     <div class="catalog-content">
       <scroll
-        :data="catalogList">
+        :data="data">
         <ul>
           <li
-            :class="{unit: item.unit, 'unit-item': item['unit-item'], active: index === catalogActive}"
-            v-for="(item, index) of catalogList"
+            :class="{unit: item.unit, 'unit-item': item['unit-item'], active: index === dataActive}"
+            v-for="(item, index) of data"
             :key="item.id">
             <div v-if="item.unit">
               <i></i>
@@ -26,23 +26,21 @@
 <script>
 /* 引入滑屏组件 */
 import Scroll from './scroll'
-import { courseMixins } from '../../utils/mixin'
 
 export default {
   name: 'catalog',
   props: {
-    catalogList: {
+    data: {
       type: Array,
       default () {
         return []
       }
     },
-    catalogActive: {
+    dataActive: {
       type: Number,
-      default: -1
+      default: 0
     }
   },
-  mixins: [courseMixins],
   components: {
     Scroll
   },

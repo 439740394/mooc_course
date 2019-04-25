@@ -81,23 +81,29 @@ export default {
     },
     /* 点击进入目录详情页 */
     handleClickEnterDetail (id, qrcodeUrl) {
-      this.setRecommendQrcodeUrl(`https://mooc1-api.chaoxing.com/teachingClassPhoneManage/phone/toParticipateCls?appId=1000&inviteCode=${qrcodeUrl}`)
+      this.setQrcodeUrl(`https://mooc1-api.chaoxing.com/teachingClassPhoneManage/phone/toParticipateCls?appId=1000&inviteCode=${qrcodeUrl}`)
       this.$router.push(`/recommend/${id}`)
     },
     /* 初始化获取数据 */
     getDataList () {
       this.getDataByUserId(RECOMMEND_ID).then(res => {
         const resList = res.data.data[0].course.data
+        let localList = RECOMMEND_LIST
         let datas = {}
         let navs = []
-        resList.forEach((item, i) => {
-          item.school = RECOMMEND_LIST[i].school.trim()
-          item.professional = RECOMMEND_LIST[i].professional.trim()
-          item.firstnavname = RECOMMEND_LIST[i].first_classification.trim()
-          item.tearcherintroduction = RECOMMEND_LIST[i].teacher_introduction.trim()
-          item.courseintroduction = RECOMMEND_LIST[i].course_introduction.trim()
-          const invitecode = item.clazz.data[0].invitecode.trim()
-          item.invitecode = invitecode
+        resList.forEach(item => {
+          for (let i = 0; i < localList.length; i++) {
+            if (localList[i].course_id === item.id) {
+              item.school = localList[i].school
+              item.professional = localList[i].professional
+              item.firstnavname = localList[i].first_classification.trim()
+              item.tearcherintroduction = localList[i].teacher_introduction
+              item.courseintroduction = localList[i].course_introduction
+              const invitecode = item.clazz.data[0].invitecode
+              item.invitecode = invitecode
+              localList.splice(i, 1)
+            }
+          }
           if (!datas[item.firstnavname]) {
             datas[item.firstnavname] = []
             navs.push(item.firstnavname)
@@ -266,7 +272,6 @@ export default {
       bottom: 0;
       left: 0;
       @include column-Center;
-      background: rgba(0, 0, 0, .5);
     }
   }
 </style>

@@ -7,6 +7,10 @@ import Xgplayer from 'xgplayer-vue'
 export default {
   name: 'xgPlayer',
   props: {
+    id: {
+      type: String,
+      default: 'xgPlay0'
+    },
     videoUrl: {
       type: String,
       default: 'https://video-qn.ibaotu.com/00/48/92/18T888piCJkI.mp4'
@@ -22,7 +26,7 @@ export default {
   data () {
     return {
       config: {
-        id: 'xg-player',
+        id: this.id,
         url: this.videoUrl,
         fluid: true,
         volume: 1,

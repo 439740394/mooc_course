@@ -8,7 +8,7 @@
     </div>
     <div class="qrcode-pos">
       <div class="qrcode-wrapper">
-        <qrcode :qrcodeWidth="140" :qrcodeHeight="140" :qrcodeUrl="qrcodeUrl"></qrcode>
+        <qrcode :qrcodeWidth="140" :qrcodeHeight="140" :url="url"></qrcode>
       </div>
       <span>班级课程二维码</span>
     </div>
@@ -31,7 +31,7 @@ import { courseMixins } from '../../utils/mixin'
 export default {
   name: 'detailTips',
   props: {
-    qrcodeUrl: {
+    url: {
       type: String,
       default: 'https://www.baidu.com'
     }

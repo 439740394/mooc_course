@@ -6,32 +6,26 @@ export const courseMixins = {
     ...mapActions([
       'setRecommendAlive',
       'setRecommendNavList',
-      'setRecommendCatalogList',
-      'setRecommendQrcodeUrl',
       'setRecommendActiveName',
-      'setRecommendCatalogActive',
-      'setRecommendDetailText',
-      'setRecommendDetailVideoInfo',
       'setCourseListAlive',
       'setCourseListNavList',
-      'setCourseListCatalogList',
-      'setCourseListQrcodeUrl',
       'setCourseListActiveName',
-      'setCourseListCatalogActive',
-      'setCourseListDetailText',
-      'setCourseListDetailVideoInfo'
+      'setQrcodeUrl',
+      'setDetailAlive',
+      'setCatalogActive',
+      'setCatalogList',
+      'setDetailTitle',
+      'setDetailText',
+      'setDetailVideoInfo'
     ]),
     /* 返回列表页设置 */
     reset () {
-      this.setRecommendCatalogActive(0)
-      this.setRecommendDetailText('')
-      this.setRecommendDetailVideoInfo({})
-      this.setCourseListCatalogActive(0)
-      this.setCourseListDetailText('')
-      this.setCourseListDetailVideoInfo({})
       setTimeout(() => {
-        this.setRecommendCatalogList([])
-        this.setCourseListCatalogList([])
+        this.setCatalogActive(0)
+        this.setCatalogList([])
+        this.setDetailTitle('')
+        this.setDetailText('')
+        this.setDetailVideoInfo([])
       }, 300)
     },
     /* 回退 */
@@ -52,67 +46,85 @@ export const courseMixins = {
       }))
     },
     /* 获取视频 */
-    getVideo (id, lastmodifytime) {
-      return this.$http.post(`${process.env.VUE_APP_API}/courese/sendGetData`, qs.stringify({
-        url: `https://mooc1-2.chaoxing.com/ananas/status/${id}?k=145&flag=normal&_dc=${lastmodifytime}`
-      }))
-    },
-    /* 请求筛选详情数据 */
-    getDetail (v) {
-      let card = null
-      let lastmodifytime = null
-      if (v === 0) {
-        card = this.recommendCatalogList[this.recommendCatalogActive].card.data
-        lastmodifytime = this.recommendCatalogList[this.recommendCatalogActive].lastmodifytime
-      } else {
-        card = this.courseListCatalogList[this.courseListCatalogActive].card.data
-        lastmodifytime = this.courseListCatalogList[this.courseListCatalogActive].lastmodifytime
+    getVideo (videoList) {
+      if (!videoList || videoList.length === 0) {
+        return
       }
-      let html = ''
-      const reg1 = /style\s*?=\s*?([‘"])[\s\S]*?\1/g
-      const reg2 = /objectid/
-      const reg3 = /iframe/
-      const reg4 = /href="[^"]*"/g
-      this.setRecommendDetailVideoInfo({})
-      this.setCourseListDetailVideoInfo({})
-      card.forEach(item => {
-        const desc = item.description
-        html += desc
-        html = html.replace(reg4, 'href="javascript:void(0);"')
-        html = html.replace(reg1, '')
-        if (reg2.test(desc) && reg3.test(desc)) {
-          let oDiv = document.createElement('div')
-          oDiv.innerHTML = desc
-          const iframe = oDiv.getElementsByTagName('iframe')[0]
-          const id = JSON.parse(iframe.getAttribute('data')).objectid
-          this.getVideo(id, lastmodifytime).then(res => {
-            const data = res.data
-            let videoJson = {}
-            if (data && data.screenshot) {
-              videoJson.poster = data.screenshot
-            }
-            if (data && data.httphd) {
-              videoJson.src = data.httphd
-            } else if (data && data.httpmd) {
-              videoJson.src = res.data.httphd
-            } else if (data && data.http) {
-              videoJson.src = data.http
-            }
-            if (v === 0) {
-              this.setRecommendDetailVideoInfo(videoJson)
-            } else {
-              this.setCourseListDetailVideoInfo(videoJson)
-            }
+      this.setDetailAlive(true)
+      Promise.all(videoList.map(item => {
+        return new Promise((resolve, reject) => {
+          this.$http.post(`${process.env.VUE_APP_API}/courese/sendGetData`, qs.stringify({
+            url: `https://mooc1-2.chaoxing.com/ananas/status/${item.id}?k=145&flag=normal&_dc=${item.lastmodifytime}`
+          })).then(res => {
+            resolve(res)
           }).catch(err => {
             console.log(err)
           })
-        }
+        })
+      })).then(res => {
+        let list = []
+        res.forEach((item, i) => {
+          const data = item.data
+          let videoJson = {}
+          videoJson.id = 'xgplay' + i
+          if (data && data.screenshot) {
+            videoJson.poster = data.screenshot
+          }
+          if (data && data.httphd) {
+            videoJson.src = data.httphd
+          } else if (data && data.httpmd) {
+            videoJson.src = res.data.httphd
+          } else if (data && data.http) {
+            videoJson.src = data.http
+          }
+          list.push(videoJson)
+        })
+        this.setDetailVideoInfo(list)
+        this.setDetailAlive(false)
+      }).catch(err => {
+        console.log(err)
       })
-      if (v === 0) {
-        this.setRecommendDetailText(html)
-      } else {
-        this.setCourseListDetailText(html)
+    },
+    /* 整理视频数据 */
+    arrangementVideo (data, lastmodifytime) {
+      const reg2 = /\.mp4/
+      const oDiv = document.createElement('div')
+      oDiv.innerHTML = data
+      const list = oDiv.getElementsByTagName('iframe')
+      let videoList = []
+      for (let i = 0; i < list.length; i++) {
+        const type = JSON.parse(list[i].getAttribute('data')).type
+        const id = JSON.parse(list[i].getAttribute('data')).objectid ? JSON.parse(list[i].getAttribute('data')).objectid : null
+        const isMp4 = reg2.test(type)
+        if (isMp4 && id) {
+          videoList.push({
+            id: id,
+            lastmodifytime: lastmodifytime
+          })
+        }
       }
+      this.getVideo(videoList)
+    },
+    /* 请求筛选详情数据 */
+    getDetail () {
+      let card = null
+      let lastmodifytime = 0
+      let title = ''
+      card = this.catalogList[this.catalogActive].card.data
+      lastmodifytime = this.catalogList[this.catalogActive].lastmodifytime
+      title = this.catalogList[this.catalogActive].label + ' ' + this.catalogList[this.catalogActive].name
+      const reg1 = /href="[^"]*"/g
+      const reg2 = /style\s*?=\s*?([‘"])[\s\S]*?\1/g
+      let data = ''
+      card.forEach(item => {
+        let desc = item.description
+        desc = desc.replace(reg1, 'href="javascript:void(0);"')
+        desc = desc.replace(reg2, '')
+        data += desc
+      })
+      this.setDetailText(data)
+      this.setDetailTitle(title)
+      this.arrangementVideo(data, lastmodifytime)
     },
     /* 整理数据 */
     arrangementData (v) {
@@ -183,20 +195,17 @@ export const courseMixins = {
     ...mapGetters([
       'recommendAlive',
       'recommendNavList',
-      'recommendCatalogList',
-      'recommendQrcodeUrl',
       'recommendActiveName',
-      'recommendCatalogActive',
-      'recommendDetailText',
-      'recommendDetailVideoInfo',
       'courseListAlive',
       'courseListNavList',
-      'courseListCatalogList',
-      'courseListQrcodeUrl',
       'courseListActiveName',
-      'courseListCatalogActive',
-      'courseListDetailText',
-      'courseListDetailVideoInfo'
+      'qrcodeUrl',
+      'detailAlive',
+      'catalogActive',
+      'catalogList',
+      'detailTitle',
+      'detailText',
+      'detailVideoInfo'
     ])
   }
 }

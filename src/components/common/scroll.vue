@@ -34,6 +34,9 @@ export default {
       type: [Array, String, Object],
       default: null
     },
+    title: {
+      type: String
+    },
     pullup: {
       type: Boolean,
       default: false
@@ -122,6 +125,12 @@ export default {
     }
   },
   watch: {
+    title () {
+      setTimeout(() => {
+        this.refresh()
+        this.scrollTo(0, 0, 0)
+      }, this.refreshDelay)
+    },
     data () {
       setTimeout(() => {
         this.refresh()

@@ -8,7 +8,7 @@ import QRCode from 'qrcodejs2'
 export default {
   name: 'qrcode',
   props: {
-    qrcodeUrl: {
+    url: {
       type: String,
       default: 'https://www.baidu.com'
     },
@@ -35,7 +35,7 @@ export default {
   methods: {
     createQrcode () {
       this.qrcode = new QRCode(this.$refs.qrcode, {
-        text: this.qrcodeUrl,
+        text: this.url,
         width: this.qrcodeWidth,
         height: this.qrcodeHeight,
         colorDark: this.qrcodeColorDark,
@@ -48,8 +48,8 @@ export default {
     }
   },
   watch: {
-    qrcodeUrl () {
-      this.qrcode.makeCode(this.qrcodeUrl)
+    url () {
+      this.qrcode.makeCode(this.url)
     }
   }
 }

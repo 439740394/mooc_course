@@ -5,23 +5,8 @@ const actions = {
   setRecommendNavList: ({ commit }, navList) => {
     return commit('SET_RECOMMEND_NAVLIST', navList)
   },
-  setRecommendCatalogList: ({ commit }, catalogList) => {
-    return commit('SET_RECOMMEND_CATALOGLIST', catalogList)
-  },
-  setRecommendQrcodeUrl: ({ commit }, qrcodeUrl) => {
-    return commit('SET_RECOMMEND_QRCODEURL', qrcodeUrl)
-  },
   setRecommendActiveName: ({ commit }, activeName) => {
     return commit('SET_RECOMMEND_ACTIVE_NAME', activeName)
-  },
-  setRecommendCatalogActive: ({ commit }, catalogActive) => {
-    return commit('SET_RECOMMEND_CATALOG_ACTIVE', catalogActive)
-  },
-  setRecommendDetailText: ({ commit }, detailText) => {
-    return commit('SET_RECOMMEND_DETAIL_TEXT', detailText)
-  },
-  setRecommendDetailVideoInfo: ({ commit }, json) => {
-    return commit('SET_RECOMMEND_DETAIL_VIDEO_INFO', json)
   },
   setCourseListAlive: ({ commit }, alive) => {
     return commit('SET_COURSE_LIST_ALIVE', alive)
@@ -29,23 +14,29 @@ const actions = {
   setCourseListNavList: ({ commit }, navList) => {
     return commit('SET_COURSE_LIST_NAVLIST', navList)
   },
-  setCourseListCatalogList: ({ commit }, catalogList) => {
-    return commit('SET_COURSE_LIST_CATALOGLIST', catalogList)
-  },
-  setCourseListQrcodeUrl: ({ commit }, qrcodeUrl) => {
-    return commit('SET_COURSE_LIST_QRCODEURL', qrcodeUrl)
-  },
   setCourseListActiveName: ({ commit }, activeName) => {
     return commit('SET_COURSE_LIST_ACTIVE_NAME', activeName)
   },
-  setCourseListCatalogActive: ({ commit }, catalogActive) => {
-    return commit('SET_COURSE_LIST_CATALOG_ACTIVE', catalogActive)
+  setQrcodeUrl: ({ commit }, url) => {
+    return commit('SET_QRCODE_URL', url)
   },
-  setCourseListDetailText: ({ commit }, detailText) => {
-    return commit('SET_COURSE_LIST_DETAIL_TEXT', detailText)
+  setDetailAlive: ({ commit }, detailAlive) => {
+    return commit('SET_DETAIL_ALIVE', detailAlive)
   },
-  setCourseListDetailVideoInfo: ({ commit }, json) => {
-    return commit('SET_COURSE_LIST_DETAIL_VIDEO_INFO', json)
+  setCatalogActive: ({ commit }, catalogActive) => {
+    return commit('SET_CATALOG_ACTIVE', catalogActive)
+  },
+  setCatalogList: ({ commit }, catalogList) => {
+    return commit('SET_CATALOG_LIST', catalogList)
+  },
+  setDetailTitle: ({ commit }, detailTitle) => {
+    return commit('SET_DETAIL_TITLE', detailTitle)
+  },
+  setDetailText: ({ commit }, detailText) => {
+    return commit('SET_DETAIL_TEXT', detailText)
+  },
+  setDetailVideoInfo: ({ commit }, detailVideoInfo) => {
+    return commit('SET_DETAIL_VIDEO_INFO', detailVideoInfo)
   }
 }
 

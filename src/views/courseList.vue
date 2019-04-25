@@ -106,7 +106,7 @@ export default {
     },
     /* 点击进入详情页 */
     handleClickEnterDetail (id, qrcodeUrl) {
-      this.setCourseListQrcodeUrl(`https://mooc1-api.chaoxing.com/teachingClassPhoneManage/phone/toParticipateCls?appId=1000&inviteCode=${qrcodeUrl}`)
+      this.setQrcodeUrl(`https://mooc1-api.chaoxing.com/teachingClassPhoneManage/phone/toParticipateCls?appId=1000&inviteCode=${qrcodeUrl}`)
       this.$router.push(`/courseList/${id}`)
     },
     /* 首字母筛选 */
@@ -130,27 +130,33 @@ export default {
     /* 获取课程列表数据 */
     getDataList () {
       this.getDataByUserId(COURSE_ID).then(res => {
-        const resList = res.data.data[0].course.data
-        if (resList[0].name !== COURSE_LIST[0].course_name) {
-          resList.reverse()
-        }
+        const resList = res.data.data[0].course.data.reverse()
+        let localList = COURSE_LIST
         let datas = {}
         let navs = {}
-        resList.forEach((item, i) => {
-          const invitecode = item.clazz.data[0].invitecode
-          item.invitecode = invitecode.trim()
-          item.school = COURSE_LIST[i].school.trim()
-          item.professional = COURSE_LIST[i].professional.trim()
-          if (!(/[A-Z]/.test(COURSE_LIST[i].Initials))) {
-            item.Initials = '#'
-          } else {
-            item.Initials = COURSE_LIST[i].Initials.trim()
+        resList.forEach(item => {
+          for (let i = 0; i < localList.length; i++) {
+            if (item.id === COURSE_LIST[i].course_id) {
+              const invitecode = item.clazz.data[0].invitecode
+              item.invitecode = invitecode
+              item.school = COURSE_LIST[i].school
+              item.professional = COURSE_LIST[i].professional
+              if (!(/[A-Z]/.test(COURSE_LIST[i].Initials))) {
+                item.Initials = '#'
+              } else {
+                item.Initials = COURSE_LIST[i].Initials
+              }
+              item.firstnavname = COURSE_LIST[i].first_classification.trim()
+              item.secondnavname = COURSE_LIST[i].second_classification.trim()
+              localList.splice(i, 1)
+            }
           }
-          item.firstnavname = COURSE_LIST[i].first_classification.trim()
-          item.secondnavname = COURSE_LIST[i].second_classification.trim()
           if (!datas[item.firstnavname]) {
             datas[item.firstnavname] = {}
             navs[item.firstnavname] = {}
+          }
+          if (item.firstnavname === undefined) {
+            console.log(item)
           }
           if (!datas[item.firstnavname][item.secondnavname]) {
             datas[item.firstnavname][item.secondnavname] = []
@@ -396,7 +402,6 @@ export default {
       left: 0;
       z-index: 12;
       @include column-Center;
-      background: rgba(0, 0, 0, .5);
     }
   }
 </style>

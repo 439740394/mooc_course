@@ -4,28 +4,40 @@
       <div class="nav">
         <div class="nav-content">
           <div
-            v-for="(item, index) of recommendNavList" :key="index"
+            :class="{active: courseListActiveName.firstnavname === key}"
+            v-for="(item, key, index) of courseListNavList"
+            :key="index"
             class="nav-item"
-            :class="{active: item === recommendActiveName}"
-            @click.stop="handleClickBackTo(item)">
-            <span>{{item}}</span>
+            @click.stop="handleClickBackTo({ firstnavname: key, secondnavname: courseListNavList[key][0] })">
+            <span>{{key}}</span>
+            <ol v-if="courseListActiveName.firstnavname === key">
+              <li
+                v-for="(val, i) of courseListNavList[key]"
+                :key="i"
+                @click.stop="handleClickBackTo({ firstnavname: key, secondnavname: val })">
+                <strong>{{val}}</strong>
+                <div class="nav-active-bar" v-if="courseListActiveName.secondnavname === val">
+                  <i></i>
+                </div>
+              </li>
+            </ol>
           </div>
         </div>
       </div>
     </div>
     <div class="content-wrapper">
       <div class="catalog-pos">
-        <catalog :catalogList="recommendCatalogList" :catalogActive="recommendCatalogActive" @changecatalogactive="changeCatalogActive"></catalog>
+        <catalog :data="catalogList" :dataActive="catalogActive" @changecatalogactive="changeCatalogActive"></catalog>
       </div>
       <div class="detail-pos">
-        <detail :text="recommendDetailText" :videoInfo="recommendDetailVideoInfo"></detail>
-        <detail-tips :qrcodeUrl="recommendQrcodeUrl"></detail-tips>
+        <detail :title="detailTitle" :text="detailText" :videoInfo="detailVideoInfo"></detail>
+        <detail-tips :url="qrcodeUrl"></detail-tips>
       </div>
       <div class="back" @click.stop="backHistory">
         <img src="../../assets/images/back_icon.png" alt="">
       </div>
     </div>
-    <div class="loading-wrapper" v-show="recommendCatalogList.length < 1">
+    <div class="loading-wrapper" v-show="catalogList.length < 1">
       <loading></loading>
     </div>
   </div>
@@ -56,15 +68,15 @@ export default {
     this.getData()
   },
   methods: {
-    /* 修改当前目录显示高亮及变换数据 */
-    changeCatalogActive (v) {
-      this.setRecommendCatalogActive(v)
-    },
     /* 点击导航返回上一级 */
     handleClickBackTo (v) {
       this.reset()
-      this.setRecommendActiveName(v)
-      this.$router.push('/recommend')
+      this.setCourseListActiveName(v)
+      this.$router.push('/courseList')
+    },
+    /* 修改目录高亮及数据 */
+    changeCatalogActive (v) {
+      this.setCatalogActive(v)
     },
     /* 获取目录数据 */
     getData () {
@@ -72,10 +84,11 @@ export default {
       const courseId = this.$route.params.id
       this.getCatalogById(courseId).then(res => {
         const data = res.data.data[0].knowledge.data
+        console.log(data)
         if (data && data.length > 0) {
           const catalogList = this.quickSort(this.arrangementData(data))
-          this.setRecommendCatalogList(catalogList)
-          this.setRecommendCatalogActive(1)
+          this.setCatalogList(catalogList)
+          this.setCatalogActive(1)
         }
       }).catch(err => {
         console.log(err)
@@ -84,9 +97,9 @@ export default {
   },
   watch: {
     /* 监听当前章节切换数据 */
-    recommendCatalogActive (v) {
+    catalogActive (v) {
       if (v > 0) {
-        this.getDetail(0)
+        this.getDetail()
       }
     }
   }
@@ -103,10 +116,12 @@ export default {
     height: 100%;
     top: 0;
     left: 0;
+    z-index: 9;
     .top {
       height: 184px;
       background: url("../../assets/images/course_list_bg.png") no-repeat center center;
       background-size: 100% 100%;
+      position: relative;
       @include wrap-center;
       .nav {
         width: 100%;
@@ -132,18 +147,68 @@ export default {
                 color: #ffffff;
               }
             }
+            ol {
+              position: absolute;
+              bottom: -80px;
+              width: 100%;
+              left: 0;
+              box-sizing: border-box;
+              padding: 0 60px;
+              height: 80px;
+              z-index: 10;
+              display: flex;
+              li {
+                flex: 1;
+                position: relative;
+                @include wrap-center;
+                strong {
+                  display: inline-block;
+                  width: 100%;
+                  border-right: 1px solid #333333;
+                  font-size: 20px;
+                  height: 22px;
+                  line-height: 20px;
+                  text-align: center;
+                  color: #333333!important;
+                }
+                .nav-active-bar {
+                  position: absolute;
+                  bottom: 4px;
+                  left: 0;
+                  width: 100%;
+                  height: 2px;
+                  i {
+                    display: block;
+                    margin: 0 auto;
+                    width: 60%;
+                    height: 100%;
+                    background: $active-color;
+                  }
+                }
+                &:nth-last-of-type(1) {
+                  strong {
+                    border-right: none;
+                  }
+                }
+                &.active {
+                  strong {
+                    color: $active-color;
+                  }
+                }
+              }
+            }
           }
         }
       }
     }
     .content-wrapper {
       position: absolute;
-      top: 184px;
+      top: 264px;
       right: 0;
       bottom: 0;
       left: 0;
       box-sizing: border-box;
-      padding: 78px 60px;
+      padding: 10px 60px 78px;
       @include wrap-center;
       .catalog-pos {
         width: 400px;
@@ -165,17 +230,16 @@ export default {
         width: 42px;
         height: 42px;
         position: absolute;
-        right: 90px;
-        top: 92px;
+        right: 100px;
+        top: 24px;
       }
     }
     .loading-wrapper {
       position: absolute;
-      top: 184px;
+      top: 264px;
       right: 0;
       bottom: 0;
       left: 0;
-      background: rgba(0, 0, 0, .5);
       @include wrap-around;
     }
   }
