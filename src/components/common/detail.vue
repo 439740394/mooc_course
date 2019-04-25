@@ -1,8 +1,7 @@
 <template>
   <div class="detail-wrapper">
     <div class="detail-content">
-      <scroll :title="title" :data="text" :videoInfo="videoInfo">
-        <h3 class="detail-title">{{title}}</h3>
+      <scroll :data="text" :videoInfo="videoInfo">
         <div class="detail-video" v-if="videoInfo.length > 0">
           <player :id="item.id" :videoUrl="item.src" :poster="item.poster" v-for="(item, index) of videoInfo" :key="index"></player>
         </div>
@@ -31,10 +30,6 @@ import Loading from './loading'
 export default {
   name: 'detail.vue',
   props: {
-    title: {
-      type: String,
-      default: ''
-    },
     text: {
       type: String,
       default: ''
@@ -67,11 +62,6 @@ export default {
     .detail-content {
       width: 100%;
       height: 100%;
-      .detail-title {
-        font-size: 22px;
-        line-height: 1.5;
-        margin-bottom: 20px;
-      }
       .detail-video {
         margin-bottom: 30px;
       }

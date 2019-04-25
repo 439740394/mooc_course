@@ -29,9 +29,6 @@ const actions = {
   setCatalogList: ({ commit }, catalogList) => {
     return commit('SET_CATALOG_LIST', catalogList)
   },
-  setDetailTitle: ({ commit }, detailTitle) => {
-    return commit('SET_DETAIL_TITLE', detailTitle)
-  },
   setDetailText: ({ commit }, detailText) => {
     return commit('SET_DETAIL_TEXT', detailText)
   },

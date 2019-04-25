@@ -26,16 +26,13 @@ export default {
       type: Boolean,
       default: false
     },
-    videoInfo: {
-      type: [Array, String, Object],
-      default: null
-    },
     data: {
       type: [Array, String, Object],
       default: null
     },
-    title: {
-      type: String
+    videoInfo: {
+      type: [Array, Object],
+      default: null
     },
     pullup: {
       type: Boolean,
@@ -125,22 +122,16 @@ export default {
     }
   },
   watch: {
-    title () {
-      setTimeout(() => {
-        this.refresh()
-        this.scrollTo(0, 0, 0)
-      }, this.refreshDelay)
-    },
     data () {
       setTimeout(() => {
-        this.refresh()
         this.scrollTo(0, 0, 0)
+        this.refresh()
       }, this.refreshDelay)
     },
     videoInfo () {
       setTimeout(() => {
-        this.refresh()
         this.scrollTo(0, 0, 0)
+        this.refresh()
       }, this.refreshDelay)
     }
   }

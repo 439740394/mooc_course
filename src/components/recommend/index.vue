@@ -18,7 +18,7 @@
         <catalog :data="catalogList" :dataActive="catalogActive" @changecatalogactive="changeCatalogActive"></catalog>
       </div>
       <div class="detail-pos">
-        <detail :title="detailTitle" :text="detailText" :videoInfo="detailVideoInfo"></detail>
+        <detail :text="detailText" :videoInfo="detailVideoInfo"></detail>
         <detail-tips :url="qrcodeUrl"></detail-tips>
       </div>
       <div class="back" @click.stop="backHistory">

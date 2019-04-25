@@ -38,10 +38,6 @@ const mutations = {
   'SET_CATALOG_LIST': (state, catalogList) => {
     state.catalogList = catalogList
   },
-  /* 设置详情页面题目 */
-  'SET_DETAIL_TITLE': (state, detailTitle) => {
-    state.detailTitle = detailTitle
-  },
   /* 设置详情页面文字 */
   'SET_DETAIL_TEXT': (state, detailText) => {
     state.detailText = detailText

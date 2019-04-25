@@ -9,7 +9,6 @@ const getters = {
   detailAlive: state => state.detailAlive,
   catalogActive: state => state.catalogActive,
   catalogList: state => state.catalogList,
-  detailTitle: state => state.detailTitle,
   detailText: state => state.detailText,
   detailVideoInfo: state => state.detailVideoInfo
 }

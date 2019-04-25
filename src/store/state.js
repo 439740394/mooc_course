@@ -13,7 +13,6 @@ const state = {
   detailAlive: false, // 详情页数据是否请求成功
   catalogActive: 0, // 当前所在课程列表索引
   catalogList: [], // 课程列表目录数据
-  detailTitle: '', // 详情题目
   detailText: '', // 详情文字
   detailVideoInfo: [] // 详情视频列表
 }

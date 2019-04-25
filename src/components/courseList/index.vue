@@ -30,7 +30,7 @@
         <catalog :data="catalogList" :dataActive="catalogActive" @changecatalogactive="changeCatalogActive"></catalog>
       </div>
       <div class="detail-pos">
-        <detail :title="detailTitle" :text="detailText" :videoInfo="detailVideoInfo"></detail>
+        <detail :text="detailText" :videoInfo="detailVideoInfo"></detail>
         <detail-tips :url="qrcodeUrl"></detail-tips>
       </div>
       <div class="back" @click.stop="backHistory">
@@ -84,7 +84,6 @@ export default {
       const courseId = this.$route.params.id
       this.getCatalogById(courseId).then(res => {
         const data = res.data.data[0].knowledge.data
-        console.log(data)
         if (data && data.length > 0) {
           const catalogList = this.quickSort(this.arrangementData(data))
           this.setCatalogList(catalogList)

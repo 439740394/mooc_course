@@ -14,7 +14,6 @@ export const courseMixins = {
       'setDetailAlive',
       'setCatalogActive',
       'setCatalogList',
-      'setDetailTitle',
       'setDetailText',
       'setDetailVideoInfo'
     ]),
@@ -23,7 +22,6 @@ export const courseMixins = {
       setTimeout(() => {
         this.setCatalogActive(0)
         this.setCatalogList([])
-        this.setDetailTitle('')
         this.setDetailText('')
         this.setDetailVideoInfo([])
       }, 300)
@@ -107,12 +105,11 @@ export const courseMixins = {
     },
     /* 请求筛选详情数据 */
     getDetail () {
+      this.setDetailVideoInfo([])
       let card = null
       let lastmodifytime = 0
-      let title = ''
       card = this.catalogList[this.catalogActive].card.data
       lastmodifytime = this.catalogList[this.catalogActive].lastmodifytime
-      title = this.catalogList[this.catalogActive].label + ' ' + this.catalogList[this.catalogActive].name
       const reg1 = /href="[^"]*"/g
       const reg2 = /style\s*?=\s*?([‘"])[\s\S]*?\1/g
       let data = ''
@@ -123,7 +120,6 @@ export const courseMixins = {
         data += desc
       })
       this.setDetailText(data)
-      this.setDetailTitle(title)
       this.arrangementVideo(data, lastmodifytime)
     },
     /* 整理数据 */
@@ -203,7 +199,6 @@ export const courseMixins = {
       'detailAlive',
       'catalogActive',
       'catalogList',
-      'detailTitle',
       'detailText',
       'detailVideoInfo'
     ])
