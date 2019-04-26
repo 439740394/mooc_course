@@ -85,7 +85,7 @@ export const courseMixins = {
     },
     /* 整理视频数据 */
     arrangementVideo (data, lastmodifytime) {
-      const reg2 = /\.mp4/
+      const reg2 = /\.(mp4|flv|m3u8)/
       const oDiv = document.createElement('div')
       oDiv.innerHTML = data
       const list = oDiv.getElementsByTagName('iframe')
