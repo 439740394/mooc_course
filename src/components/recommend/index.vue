@@ -77,8 +77,10 @@ export default {
           this.setCatalogList(catalogList)
           this.setCatalogActive(1)
         }
+        return false
       }).catch(err => {
         console.log(err)
+        this.getData()
       })
     }
   },

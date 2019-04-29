@@ -63,7 +63,9 @@ export default {
       width: 100%;
       height: 100%;
       .detail-video {
-        margin-bottom: 30px;
+        .xgplayer {
+          margin-bottom: 30px;
+        }
       }
       .detail-text {
         iframe {

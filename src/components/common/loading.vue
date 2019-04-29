@@ -11,7 +11,7 @@ export default {
   props: {
     text: {
       type: String,
-      default: '数据加载中...'
+      default: '数据加载中'
     }
   }
 }
@@ -32,7 +32,7 @@ export default {
       height: 26px;
     }
     span {
-      color: #ffffff;
+      color: #cccccc;
       margin-top: 10px;
     }
   }
